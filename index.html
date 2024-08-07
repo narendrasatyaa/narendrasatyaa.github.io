@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
-      /* Tambahan gaya untuk sentralisasi dan lebar maksimal */
       .container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0 20px; /* Menambahkan padding untuk menghindari elemen menempel ke tepi layar */
+        padding: 0 20px;
       }
 
       .hero-content {
@@ -23,13 +22,13 @@
         gap: 10px;
         text-align: center;
         min-height: 80vh;
-        margin: 0 auto; /* Menambahkan margin auto untuk sentralisasi */
+        margin: 0 auto;
       }
 
       .img-profile {
         height: 400px;
         width: 380px;
-        object-fit: cover; /* Menambahkan object-fit untuk menjaga aspek rasio gambar */
+        object-fit: cover;
       }
 
       .circle {
@@ -73,7 +72,6 @@
         }
       }
 
-      /* Gaya tambahan untuk dropdown */
       .dropdown-menu {
         text-align: center;
       }
@@ -94,27 +92,21 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-            <nav class="navbar navbar-expand-lg navbar-dark p-2" data-aos="fade-down" data-aos-duration="1000">
-              <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="#about">About Me</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#my-project" id="experience-link">My Experience</a>
-                </li>
-              </ul>
-            </nav>
-            <!-- Tombol Let's Chat di navbar dihilangkan di perangkat mobile -->
-           <div class="dropdown d-lg-none d-block">
-  <button class="btn bg-white rounded-5 text-dark w-100 py-2 fs-5 text-center dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-    Let's Chat
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <li><a class="dropdown-item" href="mailto:narendrasatyaadi7@gmail.com">Email</a></li>
-    <li><a class="dropdown-item" href="https://instagram.com/narendrasatyaa_" target="_blank">Instagram</a></li>
-  </ul>
-</div>
-
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#about">About Me</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#my-project" id="experience-link">My Experience</a>
+              </li>
+            </ul>
+            <div class="d-none d-lg-block ms-lg-3">
+              <button class="btn bg-white rounded-5 text-dark py-2 fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Let's Chat
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="mailto:narendrasatyaadi7@gmail.com">Email</a></li>
+                <li><a class="dropdown-item" href="https://instagram.com/narendrasatyaa_" target="_blank">Instagram</a></li>
               </ul>
             </div>
           </div>
@@ -139,11 +131,11 @@
           data-aos="fade-up">
           Undergraduate
         </p>
-        <div class="dropdown d-lg-none d-block">
-          <button class="btn bg-white rounded-5 text-dark w-100 py-2 fs-5 text-center dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="d-block d-lg-none mt-3">
+          <button class="btn bg-white rounded-5 text-dark w-100 py-2 fs-5 text-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Let's Chat
           </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <ul class="dropdown-menu w-100">
             <li><a class="dropdown-item" href="mailto:narendrasatyaadi7@gmail.com">Email</a></li>
             <li><a class="dropdown-item" href="https://instagram.com/narendrasatyaa_" target="_blank">Instagram</a></li>
           </ul>
