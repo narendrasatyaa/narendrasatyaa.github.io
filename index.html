@@ -1,4 +1,4 @@
-<!doctype html>
+=<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -87,7 +87,7 @@
     <section id="hero" class="bg-black text-white rounded-5 p-2">
       <nav class="navbar navbar-expand-lg navbar-dark p-2" data-aos="fade-down" data-aos-duration="1000">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#narendra">Narendra</a>
+          <a class="navbar-brand" href="#narendra">Narendra Satya Adikurniawan</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -108,15 +108,16 @@
                 Let's Chat
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="mailto:narendra.adikurniawan@gmail.com">Email</a></li>
-                <li><a class="dropdown-item" href="https://instagram.com/narenvisuals_" target="_blank">Instagram</a></li>
+                <li><a class="dropdown-item" href="mailto:narendra.adikurniawan@gmail.com"><img src="./asset/gmail.png" alt="logo-email" style="width: 20px; margin-right: 10px;"> Email</a></li>
+            <li><a class="dropdown-item" href="https://instagram.com/narenvisuals_" target="_blank"><img src="./asset/instragram.png" alt="logo-instagram" style="width: 20px; margin-right: 10px;">Instagram</a></li>
+            <li><a class="dropdown-item" href="https://www.linkedin.com/in/narendra-satya-adikurniawan/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank"><img src="./asset/linkedin.png" alt="logo-linkedin" style="width: 20px; margin-right: 10px;">LinkedIn</a></li>
               </ul>
             </div>
           </div>
         </div>
       </nav>
       <div class="container hero-content">
-        <img src="./asset/foto-asset.png"
+        <img src="./asset/foto.png"
           alt="profile"
           class="img-profile"
           data-aos-duration="1000"
@@ -129,7 +130,7 @@
           Narendra Satya Adikurniawan
         </h1>
         <p
-          data-aos-delay="1000"
+          data-aos-delay="500"
           data-aos-duration="1000"
           data-aos="fade-up">
           Undergraduate
@@ -139,8 +140,9 @@
             Let's Chat
           </button>
           <ul class="dropdown-menu w-100">
-            <li><a class="dropdown-item" href="mailto:narendra.adikurniawan@gmail.com">Email</a></li>
-            <li><a class="dropdown-item" href="https://instagram.com/narenvisuals_" target="_blank">Instagram</a></li>
+            <li><a class="dropdown-item" href="mailto:narendra.adikurniawan@gmail.com"><img src="./asset/gmail.png" alt="logo-email" style="width: 20px; margin-right: 10px;"> Email</a></li>
+            <li><a class="dropdown-item" href="https://instagram.com/narenvisuals_" target="_blank"><img src="./asset/instragram.png" alt="logo-instagram" style="width: 20px; margin-right: 10px;">Instagram</a></li>
+            <li><a class="dropdown-item" href="https://www.linkedin.com/in/narendra-satya-adikurniawan/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank"><img src="./asset/linkedin.png" alt="logo-linkedin" style="width: 20px; margin-right: 10px;">LinkedIn</a></li>
           </ul>
         </div>
       </div>
@@ -199,8 +201,114 @@
       <div class="project-item">
         <img src="./asset/projek_1.png" alt="projek_1" class="img-fluid mb-3" data-aos="fade-up" data-aos-duration="1000">
         <h3 class="fw-bold title">Project Website Ormawa</h3>
-        <p>Pada project kali ini, saya mendapat tugas untuk membuat halaman profile untuk kebutuhan dari program kerja Himpunan Mahasiswa Teknik Informatika ini. Pada tugas saya ini saya mengerjakana Front End Pada project kali ini saya menggunakan sedikit animasi dengan bahasa pemrograman Java Script. Penggunaan Java Script pada project ini digunakan untuk membuat tampilan foto halaman profile otomatis berjalan. </p>
+        <p>In this project, I was assigned to create a profile page for the needs of the Informatics Engineering Student Association work program. In my assignment I worked on the Front End. In this project I used a little animation with the Java Script programming language. The use of Java Script in this project is used to make the profile page photo display run automatically. </p>
       </div>
+      <section id="contact" class="mt-5 container">
+        <div class="card rounded-4 border-0 w-100">
+          <div class="card-body d-flex align-items-center">
+            <div class="circle"></div>
+            <h6 class="m-0 fw-light">Contact Me</h6>
+          </div>
+        </div>
+      
+        <div class="row">
+          <!-- Contact Me Form -->
+          <div class="col-md-6">
+            <h3 class="fw-bold title mt-4">Contact Me</h3>
+            <form action="process_contact.php" method="POST">
+              <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Your full name" required>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Your email address" required>
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your message" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Send Message</button>
+            </form>
+          </div>
+      
+          <!-- Pengaduan Form -->
+          <div class="col-md-6">
+            <h3 class="fw-bold title mt-4">Complaint</h3>
+            <form action="process_contact.php" method="POST">
+              <div class="mb-3">
+                <label for="name-pengaduan" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name-pengaduan" name="name-pengaduan" placeholder="Your full name" required>
+              </div>
+              <div class="mb-3">
+                <label for="email-pengaduan" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email-pengaduan" name="email-pengaduan" placeholder="Your email address" required>
+              </div>
+              <div class="mb-3">
+                <label for="subject-pengaduan" class="form-label">Subject</label>
+                <input type="text" class="form-control" id="subject-pengaduan" name="subject-pengaduan" placeholder="Pengaduan subject" required>
+              </div>
+              <div class="mb-3">
+                <label for="complaint" class="form-label">Complaint Details</label>
+                <textarea class="form-control" id="complaint" name="complaint" rows="4" placeholder="Describe your complaint" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-danger w-100">Submit Complaint</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <footer class="bg-dark text-white mt-5 p-4 round">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <h5>About Me</h5>
+              <p>
+                I am Narendra Satya Adikurniawan, an Informatics Engineering student with a passion for technology, research, and development. Stay connected to learn more about my journey and projects.
+              </p>
+            </div>
+      
+            <div class="col-md-4 mb-3">
+              <h5>Contact Info</h5>
+              <ul class="list-unstyled">
+                <li>Email: <a href="mailto:narendra.adikurniawan@gmail.com" class="text-white">narendra.adikurniawan@gmail.com</a></li>
+                <li>Phone: <a href="tel:+628123456789" class="text-white">+62 858 9002 2967</a></li>
+              </ul>
+            </div>
+      
+            <div class="col-md-4 mb-3">
+              <h5>Follow Me</h5>
+              <ul class="list-unstyled d-flex gap-3">
+                <li>
+                  <a href="https://instagram.com/narenvisuals_" target="_blank" class="text-white">
+                    <img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new.png" alt="Instagram">
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/narendra-satya-adikurniawan" target="_blank" class="text-white">
+                    <img src="https://img.icons8.com/ios-filled/24/ffffff/linkedin.png" alt="LinkedIn">
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:narendra.adikurniawan@gmail.com" target="_blank" class="text-white">
+                    <img src="https://img.icons8.com/ios-filled/24/ffffff/gmail.png" alt="Gmail">
+                  </a>
+                </li>
+                <li>
+                  <a href="https://twitter.com/narenvisuals_" target="_blank" class="text-white">
+                    <img src="https://img.icons8.com/ios-filled/24/ffffff/twitter.png" alt="Twitter">
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+      
+          <div class="row">
+            <div class="col-12 text-center mt-4">
+              <p class="m-0">&copy; 2024 Narendra Satya Adikurniawan. All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>      
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
