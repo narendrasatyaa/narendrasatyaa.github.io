@@ -1,0 +1,91 @@
+/* Tambahan gaya untuk sentralisasi dan lebar maksimal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Menambahkan padding untuk menghindari elemen menempel ke tepi layar */
+  }
+  
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    min-height: 80vh;
+    margin: 0 auto; /* Menambahkan margin auto untuk sentralisasi */
+  }
+  
+  .img-profile {
+    height: 400px;
+    width: 380px;
+    object-fit: cover; /* Menambahkan object-fit untuk menjaga aspek rasio gambar */
+  }
+  
+  .circle {
+    width: 20px;
+    height: 20px;
+    background-color: greenyellow;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .experience-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .experience-item {
+    flex: 1 1 300px;
+    max-width: 500px;
+    text-align: center;
+  }
+
+  .project-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .project-item {
+    flex: 1 1 300px;
+    max-width: 500px;
+    text-align: center;
+  }
+
+  .project p{
+    text-indent: 10px;
+  }
+  
+  @media (max-width: 800px) {
+    .img-profile {
+        height: 300px;
+        width: 280px;
+    }
+    .navbar-nav {
+        background-color: white;
+        border-radius: 10px;
+        padding: 10px;
+        margin-top: 10px;
+    }
+    .nav-link {
+        color: black;
+    }
+  }
+  
+  /* Gaya tambahan untuk dropdown */
+  .dropdown-menu {
+    text-align: center;
+  }
+  .dropdown-menu a {
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+  }
+  
