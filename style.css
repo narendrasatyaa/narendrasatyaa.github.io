@@ -19,11 +19,6 @@ body {
     gap: 0;
     /* untuk flexbox */
 }
-.logo img {
-    width: 100px;  /* Atur lebar gambar sesuai yang diinginkan */
-    height: auto;  /* Agar proporsi gambar tetap terjaga */
-    max-width: 100%; /* Pastikan gambar tidak melebihi ukuran kontainer */
-}
 
 header {
     position: fixed;
@@ -43,6 +38,11 @@ header {
     font-size: 1.5rem;
     font-weight: 600;
     color: #1e1e24;
+}
+.logo img {
+    width: 100px;  /* Atur lebar gambar sesuai yang diinginkan */
+    height: auto;  /* Agar proporsi gambar tetap terjaga */
+    max-width: 100%; /* Pastikan gambar tidak melebihi ukuran kontainer */
 }
 
 .menu-toggle {
