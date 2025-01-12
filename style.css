@@ -34,16 +34,20 @@ header {
     z-index: 1000;
 }
 
+/* Mengatur elemen anchor supaya sesuai dengan ukuran gambar */
 .logo {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1e1e24;
+    display: inline-block;
+    width: 100px;  /* Sesuaikan ukuran lebar gambar */
+    height: auto;
 }
+
+/* Mengatur gambar supaya tidak memenuhi layar */
 .logo img {
-    width: 100px;  /* Atur lebar gambar sesuai yang diinginkan */
-    height: auto;  /* Agar proporsi gambar tetap terjaga */
-    max-width: 100%; /* Pastikan gambar tidak melebihi ukuran kontainer */
+    width: 100%;  /* Mengatur gambar untuk mengikuti ukuran kontainer */
+    height: auto;  /* Memastikan proporsi gambar tetap terjaga */
+    max-width: 100%; /* Pastikan gambar tidak melebihi kontainer */
 }
+
 
 .menu-toggle {
     display: none;
