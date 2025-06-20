@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | Narendra Satya Adikurniawan </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">narenlabs.</div>
+            <button class="theme-toggle" id="themeToggle">🌓</button>
+        </header>
+
+        <section class="hero">
+            <h1>Hi, I'm <span style="background: linear-gradient(45deg, var(--primary), var(--secondary)); -webkit-background-clip: text; background-clip: text; color: transparent;">Narendra</span></h1>
+            <p>I'm an Informatics undergraduate student at Muhammadiyah University of Surakarta with a strong interest in web development, particularly in Frontend Development and UI/UX Design. As a beginner who is continuously learning, I’m passionate about
+                creating interactive and user-friendly interfaces using modern web technologies.</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">My Projects</h2>
+
+            <div class="project-categories">
+                <button class="category-btn active" data-category="all">All Projects</button>
+                <!-- <button class="category-btn" data-category="ui">UI Design</button> -->
+                <!-- <button class="category-btn" data-category="web">Web Development</button> -->
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card ui-card" data-category="ui">
+                    <div class="project-img" style="background-image: url('./assets/karyahub.png');">
+                        <span class="project-badge">UI Design</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>KaryaHub</h3>
+                        <p>Aplikasi web yang dirancang untuk membantu perusahaan dalam memantau kehadiran pegawai, mengelola data cuti dan izin, serta menghasilkan laporan kehadiran secara otomatis dan efisien.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Figma</span>
+                            <span class="project-tag">Prototyping</span>
+                            <span class="project-tag">UX Research</span>
+                        </div>
+                        <a href="https://www.figma.com/design/lcDXB6bvxqRzyc3K7Skxht/RPL-KaryaHub?node-id=103-1015&t=j1lExuEuL7LEJsZL-1" class="btn small-btn">View Case Study</a>
+                    </div>
+                </div>
+                <div class="project-card ui-card" data-category="ui">
+                    <div class="project-img" style="background-image: url('./assets/laukita.png');">
+                        <span class="project-badge">UI Design</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Laukita(Unfinished)</h3>
+                        <p>Aplikasi web yang dirancang untuk membantu perusahaan dalam memantau kehadiran pegawai, mengelola data cuti dan izin, serta menghasilkan laporan kehadiran secara otomatis dan efisien.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Figma</span>
+                            <span class="project-tag">Prototyping</span>
+                            <span class="project-tag">UX Research</span>
+                        </div>
+                        <a href="https://www.figma.com/design/tByW5Ph0Q6vd3R5HpDAgLJ/Aplikasi-Pemesanan-Makanan-Laukita-?node-id=0-1&t=7fezFG7zJ7Ot1RVR-1" class="btn small-btn">View Design</a>
+                    </div>
+                </div>
+                <div class="project-card ui-card" data-category="ui">
+                    <div class="project-img" style="background-image: url('./assets/wakaf\ 1.png');">
+                        <span class="project-badge">UI Design</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Wakaf Pintar</h3>
+                        <p>Aplikasi web yang dirancang untuk membantu perusahaan dalam memantau kehadiran pegawai, mengelola data cuti dan izin, serta menghasilkan laporan kehadiran secara otomatis dan efisien.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Figma</span>
+                            <span class="project-tag">Prototyping</span>
+                            <span class="project-tag">UX Research</span>
+                        </div>
+                        <a href="https://www.figma.com/design/I4Xo7v4uJHqMmbT43tXSSy/WakafPintar?node-id=0-1&t=4xYig8TDLArqAieg-1" class="btn small-btn">View Design</a>
+                    </div>
+                </div>
+                <div class="project-card ui-card" data-category="ui">
+                    <div class="project-img" style="background-image: url('./assets/laukita.png');">
+                        <span class="project-badge">UI Design</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Laukita(Unfinished)</h3>
+                        <p>Aplikasi web yang dirancang untuk membantu perusahaan dalam memantau kehadiran pegawai, mengelola data cuti dan izin, serta menghasilkan laporan kehadiran secara otomatis dan efisien.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Figma</span>
+                            <span class="project-tag">Prototyping</span>
+                            <span class="project-tag">UX Research</span>
+                        </div>
+                        <a href="" class="btn small-btn">View Design</a>
+                    </div>
+                </div>
+
+                <div class="project-card web-card" data-category="web">
+                    <div class="project-img" style="background-image: url('./assets/puasa.png');">
+                        <span class="project-badge">Web Dev</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Iftar Countdown</h3>
+                        <p>Full-stack e-commerce solution with payment integration and admin dashboard.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">Javascript</span>
+                        </div>
+                        <a href="" class="btn small-btn">Live Demo</a>
+                    </div>
+                </div>
+                <div class="project-card web-card" data-category="web">
+                    <div class="project-img" style="background-image: url('./assets/hmtf.png');">
+                        <span class="project-badge">Web Dev</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>HIMATIF Presensi</h3>
+                        <p>Full-stack e-commerce solution with payment integration and admin dashboard.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">PHP</span>
+                            <span class="project-tag">MySQL</span>
+                        </div>
+                        <a href="#" class="btn small-btn">Private</a>
+                    </div>
+                </div>
+                <div class="project-card web-card" data-category="web">
+                    <div class="project-img" style="background-image: url('./assets/donasi2.png');">
+                        <span class="project-badge">Web Dev</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Web Donasi : Siapa Peduli?</h3>
+                        <p>Full-stack e-commerce solution with payment integration and admin dashboard.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">PHP</span>
+                            <span class="project-tag">MySQL</span>
+                        </div>
+                        <a href="#" class="btn small-btn">View Source Code</a>
+                    </div>
+                </div>
+                <div class="project-card web-card" data-category="web">
+                    <div class="project-img" style="background-image: url('./assets/wedevormawa.png');">
+                        <span class="project-badge">Web Dev</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Website Organisasi</h3>
+                        <p>Full-stack e-commerce solution with payment integration and admin dashboard.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">PHP</span>
+                            <span class="project-tag">MySQL</span>
+                        </div>
+                        <a href="#" class="btn small-btn">Private</a>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </section>
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="./assets/foto-naren.jpg" alt="Narendra Satya Adikurniawan" class="profile-img">
+                </div>
+                <div>
+                    <p>I am an undergraduate Informatics student at Muhammadiyah University of Surakarta with a strong interest in web development, particularly in Frontend Development and UI/UX Design. As a beginner who is eager to learn, I am passionate
+                        about creating interactive and user-friendly interfaces using modern web technologies. Born in Kudus in May 2005, I am known as a disciplined, honest, confident, and goal-oriented individual. I am also persistent and possess strong
+                        communication and public speaking skills, which support my ability to work both independently and in a team. Currently, I am seeking an internship opportunity to further develop my skills and gain real-world experience.</p>
+
+                    <h3 style="margin-top: 30px; margin-bottom: 15px;">Skills</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Figma</span>
+                        <span class="project-tag">PHP</span>
+                        <span class="project-tag">MySQL</span>
+                        <span class="project-tag">Java</span>
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">HTML</span>
+                        <span class="project-tag">CSS</span>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2025 - Now</div>
+                    <h3 class="timeline-title">Head of Science and Research</h3>
+                    <div class="timeline-company">Himpunan Mahasiwa Teknik Informatika University of Muhammadiyah Surakarta</div>
+                    <p>Leading the planning and implementation of scientific work programs, such as studies, HIMATIF Learning Center, and Research. Collaborating with members of the Informatics Engineering Association in research activities and web-based
+                        software development. Becoming an Advisor and collaborating in the design of payment system research at an Islamic boarding school located in Ketitang, Boyolali.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Sep 2024 - Jan 2025 </div>
+                    <h3 class="timeline-title">Programming Algorithm Laboratory Assistant</h3>
+                    <div class="timeline-company">University of Muhammadiyah Surakarta</div>
+                    <p>This activity aims to help students understand the basic concepts of algorithms and programming. In addition, this event also provides support in carrying out practical assignments and projects related to programming. During the practicum,
+                        we help solve technical problems faced by students, such as code debugging and error handling. In addition, we also prepare and manage practicum materials, which include modules, questions, and examples of programming code to support
+                        a more effective learning proces.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2024 - Dec 2025</div>
+                    <h3 class="timeline-title">Staff of Science and Research </h3>
+                    <div class="timeline-company">Himpunan Mahasiwa Teknik Informatika University of Muhammadiyah Surakarta</div>
+                    <p>As a Scientific and Research Staff at HIMATIF UMS. I am responsible for facilitating academic forums and encouraging students' potential in scientific research in the field of Information Technology. My main focus is to develop a research
+                        culture and design innovation, to create an environment for students to explore their research interests. Through a collaborative and educational approach, I strive to create a supportive environment for students in developing
+                        their interests and sharing their knowledge, skills, and ideas in research.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2023 - Now </div>
+                    <h3 class="timeline-title">Staff of Research and Technology</h3>
+                    <div class="timeline-company">Forum Open Source Teknik Informatika University of Muhammadiyah Surakarta</div>
+                    <p>As a Research and Technology Staff at FOSTI UMS, I am responsible for facilitating academic forums to encourage students' potential in information technology. My focus is to develop a desire to continue to learn about the use of various
+                        programming languages ​​in information technology.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Aug 2024 </div>
+                    <h3 class="timeline-title">Podcast Source</h3>
+                    <div class="timeline-company">Himpunan Mahasiwa Teknik Informatika University of Muhammadiyah Surakarta</div>
+                    <p>As a resource person in the Informatics Student Association Podcast, my partner and I discussed the importance of financial management for students. In this session, we explained various strategies for earning income during college
+                        and how to manage finances, especially for students who live in boarding houses.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Oct 2024 </div>
+                    <h3 class="timeline-title">Speaker at HIMATIF Learning Center </h3>
+                    <div class="timeline-company">Himpunan Mahasiwa Teknik Informatika University of Muhammadiyah Surakarta</div>
+                    <p>Conducting a discussion of last year's midterm exam questions in the calculus course before the midterm exam.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/narendrasatyaa" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/narendra-satya-adikurniawan" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <!-- <a href="https://twitter.com/username" target="_blank" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a> -->
+                <a href="https://instagram.com/narenlabs" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p>© <span id="year"></span> narenlabs. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
