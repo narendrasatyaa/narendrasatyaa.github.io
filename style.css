@@ -266,6 +266,9 @@ section {
     section {
         padding: 60px 0;
     }
+    .about-img {
+        height: 300px;
+    }
 }
 
 .about-content {
@@ -285,6 +288,86 @@ section {
     color: white;
     font-size: 1.5rem;
     font-weight: 700;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+.about-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text);
+}
+
+
+/* Skills section styles */
+
+.skills-title {
+    margin: 30px 0 15px;
+    color: var(--text);
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.project-tag {
+    background: rgba(58, 134, 255, 0.1);
+    color: var(--primary);
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+/* Mobile Responsive Styles for About Section */
+
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .about-img {
+        height: 300px;
+        width: 300px;
+        margin: 0 auto;
+    }
+    .about-text {
+        text-align: center;
+    }
+    .about-text p {
+        text-align: left;
+        font-size: 1rem;
+    }
+    .skills-title {
+        text-align: center;
+        margin: 25px 0 15px;
+    }
+    .project-tags {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-img {
+        height: 250px;
+        width: 250px;
+    }
+    .project-tag {
+        font-size: 0.8rem;
+        padding: 5px 12px;
+    }
+    .about-text p {
+        font-size: 0.95rem;
+    }
 }
 
 .profile-img {
