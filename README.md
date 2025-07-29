@@ -8,7 +8,6 @@ Halo! Saya **Narendra Satya Adikurniawan** — seorang **Web Developer**, pencin
 
 ## 🧭 Daftar Isi
 
-- [📁 Struktur Proyek](#-struktur-proyek)
 - [🚀 Fitur Utama](#-fitur-utama)
 - [🛠️ Teknologi yang Digunakan](#-teknologi-yang-digunakan)
 - [📬 Hubungi Saya](#-hubungi-saya)
