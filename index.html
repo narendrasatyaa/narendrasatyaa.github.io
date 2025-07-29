@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Narendra Satya Adikurniawan | Portfolio</title>
+  <link rel="shortcut icon" href="./assets/pp-bento-github-dll.png" type="image/x-icon" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3a86ff',
+            secondary: '#8338ec',
+          },
+          backgroundImage: {
+            'gradient-purple': 'linear-gradient(45deg, #3a86ff, #8338ec)',
+            'card-hover': 'linear-gradient(45deg, #3a86ff, #8338ec)',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+  .category-btn {
+    @apply bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200;
+  }
+
+  .category-btn:hover:not(.active) {
+    @apply bg-primary text-white scale-105 shadow-md;
+  }
+
+  .category-btn.active {
+    @apply bg-gradient-to-r from-primary to-secondary text-white border-transparent shadow-lg scale-105;
+  }
+</style>
+  <!-- <style>
+    .btn-gradient {
+      @apply inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-full shadow-md hover:shadow-lg hover:translate-y-[-3px] transition-all duration-300;
+    }
+    .project-card {
+      @apply flex flex-col h-full transition-all duration-500 hover:translate-y-[-10px] hover:shadow-2xl;
+    }
+    .project-badge {
+      @apply absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold uppercase text-white;
+    }
+    .ui-badge { @apply bg-red-500; }
+    .web-badge { @apply bg-teal-500; }
+    .project-tag {
+      @apply bg-blue-100 text-primary px-3 py-1 rounded-full text-xs font-medium;
+    }
+    .timeline-dot::before {
+      @apply absolute left-0 top-6 w-4 h-4 bg-primary border-4 border-secondary rounded-full -translate-x-1/2;
+    }
+    .dark .project-tag { @apply bg-blue-900 text-blue-200; }
+  </style> -->
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed dark:bg-gray-900 dark:text-gray-100">
+  <div class="container mx-auto px-6">
+    <header class="py-8 flex justify-between items-center">
+      <div class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+        narenlabs.
+      </div>
+        <button class="theme-toggle" id="themeToggle">🌓</button>
+    </header>
+    <section class="py-20 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6">
+        Hi, I'm <span class="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">Narendra</span>
+      </h1>
+      <p class="max-w-3xl mx-auto text-lg opacity-90 mb-10">
+        Informatics undergraduate at Muhammadiyah University of Surakarta with a growing focus in Fullstack Web Development. Enthusiastic about frontend technologies and UI/UX design, I enjoy building intuitive and user-friendly digital products while continuously learning and evolving in the tech space.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#projects" class="btn-gradient">View My Work</a>
+        <a href="https://drive.google.com/drive/folders/1LnqQIyaZcuw961yKZr07sXRSYq9HlaDQ?usp=drive_link" target="_blank" class="btn-gradient">Download CV</a>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-20">
+      <h2 class="text-3xl font-bold text-center mb-16">My Projects</h2>
+      <!-- <div class="flex flex-wrap justify-center gap-4 mb-12">
+        <button class="category-btn active px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold" data-category="all">All Projects</button>
+        <button class="category-btn px-6 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-full" data-category="ui">UI Design</button>
+        <button class="category-btn px-6 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-full" data-category="web">Web Development</button>
+      </div> -->
+
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+  <button class="category-btn active px-6 py-3 rounded-full font-semibold transition-all duration-300 transform" data-category="all">
+    All Projects
+  </button>
+  <button class="category-btn px-6 py-3 rounded-full font-semibold transition-all duration-300 transform" data-category="ui">
+    UI Design
+  </button>
+  <button class="category-btn px-6 py-3 rounded-full font-semibold transition-all duration-300 transform" data-category="web">
+    Web Development
+  </button>
+</div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- KaryaHub -->
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="ui">
+          <div class="relative h-48" style="background-image: url('./assets/karyahub.png'); background-size: cover; background-position: center;"></div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold mb-3">KaryaHub</h3>
+            <p class="text-sm opacity-80 mb-4">A web application designed to help companies monitor employee attendance, manage leave and permit data, and generate attendance reports automatically and efficiently.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="project-tag"><i class="fab fa-figma mr-1"></i> Figma</span>
+              <span class="project-tag"><i class="fas fa-mouse-pointer mr-1"></i> Prototyping</span>
+              <span class="project-tag"><i class="fas fa-search mr-1"></i> UX Research</span>
+            </div>
+            <a href="https://www.figma.com/design/lcDXB6bvxqRzyc3K7Skxht/RPL-KaryaHub?node-id=103-1015&t=j1lExuEuL7LEJsZL-1" class="btn-gradient text-center text-sm py-2 mt-auto">View Design</a>
+          </div>
+        </div>
+
+        <!-- Laukita -->
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="ui">
+          <div class="relative h-48" style="background-image: url('./assets/laukita.png'); background-size: cover; background-position: center;"></div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold mb-3">Laukita (Unfinished)</h3>
+            <p class="text-sm opacity-80 mb-4">A catering app design for customizable food orders with category-based menu selection.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="project-tag"><i class="fab fa-figma mr-1"></i> Figma</span>
+              <span class="project-tag"><i class="fas fa-mouse-pointer mr-1"></i> Prototyping</span>
+              <span class="project-tag"><i class="fas fa-search mr-1"></i> UX Research</span>
+            </div>
+            <a href="https://www.figma.com/design/tByW5Ph0Q6vd3R5HpDAgLJ/Aplikasi-Pemesanan-Makanan-Laukita-?node-id=0-1&t=7fezFG7zJ7Ot1RVR-1" class="btn-gradient text-center text-sm py-2 mt-auto">View Design</a>
+          </div>
+        </div>
+
+        <!-- Wakaf Pintar -->
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="ui">
+          <div class="relative h-48" style="background-image: url('./assets/wakaf 1.png'); background-size: cover; background-position: center;"></div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold mb-3">Wakaf Pintar</h3>
+            <p class="text-sm opacity-80 mb-4">A web app for managing employee attendance, leave, and generating reports efficiently.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="project-tag"><i class="fab fa-figma mr-1"></i> Figma</span>
+              <span class="project-tag"><i class="fas fa-mouse-pointer mr-1"></i> Prototyping</span>
+              <span class="project-tag"><i class="fas fa-search mr-1"></i> UX Research</span>
+            </div>
+            <a href="https://www.figma.com/design/I4Xo7v4uJHqMmbT43tXSSy/WakafPintar?node-id=0-1&t=4xYig8TDLArqAieg-1" class="btn-gradient text-center text-sm py-2 mt-auto">View Design</a>
+          </div>
+        </div>
+
+        <!-- MyPresensi -->
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="ui">
+          <div class="relative h-48" style="background-image: url('./assets/mypresensi.png'); background-size: cover; background-position: center;"></div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold mb-3">MyPresensi UMS (Unfinished)</h3>
+            <p class="text-sm opacity-80 mb-4">Redesign of UMS attendance system with course access and schedule integration.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="project-tag"><i class="fab fa-figma mr-1"></i> Figma</span>
+              <span class="project-tag"><i class="fas fa-mouse-pointer mr-1"></i> Prototyping</span>
+              <span class="project-tag"><i class="fas fa-search mr-1"></i> UX Research</span>
+            </div>
+            <a href="https://www.figma.com/design/tByW5Ph0Q6vd3R5HpDAgLJ/Aplikasi-Pemesanan-Makanan-Laukita-?node-id=0-1&t=7fezFG7zJ7Ot1RVR-1" class="btn-gradient text-center text-sm py-2 mt-auto">View Design</a>
+          </div>
+        </div>
+
+        <!-- Iftar Countdown -->
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
+          <div class="relative h-48" style="background-image: url('./assets/puasa.png'); background-size: cover; background-position: center;"></div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold mb-3">Iftar Countdown</h3>
+            <p class="text-sm opacity-80 mb-4">Web app that calculates time to break fast based on user’s location.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
+              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
+              <span class="project-tag"><i class="fab fa-js mr-1"></i> JavaScript</span>
+            </div>
+            <a href="https://iftar-countdown.vercel.app/" class="btn-gradient text-center text-sm py-2 mt-auto">View Source Code</a>
+          </div>
+        </div>
+        <!-- Qwen Ai -->
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
+          <div class="relative h-48" style="background-image: url('./assets/tirtaai.png'); background-size: cover; background-position: center;"></div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold mb-3">TirtaAI – Chatbot AI Pintar dengan Qwen‑Plus (Alibaba)</h3>
+            <p class="text-sm opacity-80 mb-4">AI chatbot powered by DashScope API, built with Streamlit for a clean and interactive interface.</p>
+
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="project-tag"><i class="fa-brands fa-python"></i> Python</span>
+              <span class="project-tag"> Dashscope</span>
+              <span class="project-tag">Streamlit</span>
+            </div>
+            <a href="https://tirtaai.streamlit.app/" class="btn-gradient text-center text-sm py-2 mt-auto">View Source Code</a>
+          </div>
+        </div>
+
+        <!-- HIMATIF Presensi -->
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
+          <div class="relative h-48" style="background-image: url('./assets/hmtf.png'); background-size: cover; background-position: center;"></div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold mb-3">HIMATIF Presensi</h3>
+            <p class="text-sm opacity-80 mb-4">QR-based attendance system for student organizations using PHP and MySQL.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
+              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
+              <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
+              <span class="project-tag"><i class="fas fa-database mr-1"></i> MySQL</span>
+            </div>
+            <a href="#" class="btn-gradient text-center text-sm py-2 mt-auto opacity-60 cursor-not-allowed">Private</a>
+          </div>
+        </div>
+        <!-- Web Presensi -->
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
+          <div class="relative h-48" style="background-image: url('./assets/presensikaryawan.png'); background-size: cover; background-position: center;"></div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold mb-3">Sistem Presensi Karyawan Perusahaan</h3>
+            <p class="text-sm opacity-80 mb-4">Web-based employee attendance system with leave management and admin reporting, built using PHP and MySQL.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
+              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
+              <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
+              <span class="project-tag"><i class="fas fa-database mr-1"></i> MySQL</span>
+            </div>
+            <a href="https://github.com/narendrasatyaa/sistem-presensi-perusahaan/" class="btn-gradient text-center text-sm py-2 mt-auto ">View Source Code</a>
+          </div>
+        </div>
+
+        <!-- Web Donasi -->
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
+          <div class="relative h-48" style="background-image: url('./assets/donasi2.png'); background-size: cover; background-position: center;"></div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold mb-3">Web Donasi: Siapa Peduli?</h3>
+            <p class="text-sm opacity-80 mb-4">PHP & MySQL-based donation management system for underprivileged children.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
+              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
+              <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
+              <span class="project-tag"><i class="fas fa-database mr-1"></i> MySQL</span>
+            </div>
+            <a href="https://github.com/narendrasatyaa/web-dev-crud-with-php" class="btn-gradient text-center text-sm py-2 mt-auto">View Source Code</a>
+          </div>
+        </div>
+
+        <!-- Website Organisasi -->
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
+          <div class="relative h-48" style="background-image: url('./assets/wedevormawa.png'); background-size: cover; background-position: center;"></div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold mb-3">Website Organisasi</h3>
+            <p class="text-sm opacity-80 mb-4">Frontend development for Informatics Student Association with auto-rotating image carousel.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
+              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
+              <span class="project-tag"><i class="fab fa-js mr-1"></i> JavaScript</span>
+              <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
+              <span class="project-tag"><i class="fa-solid fa-database"></i> MySQL</span>
+            </div>
+            <a href="https://himatifums.org/" class="btn-gradient text-center text-sm py-2 mt-auto">Visit Site</a>
+          </div>
+        </div>
+        <!-- Website Pondok Bunga -->
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
+          <div class="relative h-48" style="background-image: url('./assets/pondokbunga.png'); background-size: cover; background-position: center;"></div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold mb-3">Pondok Bunga Sri Rejeki</h3>
+           <p class="text-sm opacity-80 mb-4">Promotional website for a plant store with search, categories, and Google Maps.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
+              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
+              <span class="project-tag"><i class="fab fa-js mr-1"></i> JavaScript</span>
+              <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
+              <span class="project-tag"><i class="fa-solid fa-database"></i> MySQL</span>
+            </div>
+            <a href="https://pondokbungasrirejeki.infintyfree.app/" class="btn-gradient text-center text-sm py-2 mt-auto">Visit Site</a>
+          </div>
+        </div>
+        <!-- Website About Campus ID -->
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
+          <div class="relative h-48" style="background-image: url('./assets/aboutcampus.png'); background-size: cover; background-position: center;"></div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold mb-3">About Campus ID</h3>
+            <p class="text-sm opacity-80 mb-4">Landing page for an education platform with event info and WhatsApp integration.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
+              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
+              <span class="project-tag"><i class="fab fa-js mr-1"></i> JavaScript</span>
+              <!-- <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span> -->
+            </div>
+            <a href="https://aboutcampusid.surge.sh" class="btn-gradient text-center text-sm py-2 mt-auto">Visit Site</a>
+          </div>
+        </div>
+        <!-- Website GreenPulse -->
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
+          <div class="relative h-48" style="background-image: url('./assets/greenpulsee.png'); background-size: cover; background-position: center;"></div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold mb-3">Green Pulse</h3>
+            <p class="text-sm opacity-80 mb-4">Web app to promote environmental awareness through reporting and gamification.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
+              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
+              <span class="project-tag"><i class="fab fa-js mr-1"></i> JavaScript</span>
+              <!-- <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span> -->
+            </div>
+            <a href="https://green-pulse-one.vercel.app/" class="btn-gradient text-center text-sm py-2 mt-auto">Visit Site</a>
+          </div>
+        </div>
+        <!-- Website KenaBatin
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
+          <div class="relative h-48" style="background-image: url('./assets/kenalbatin.png'); background-size: cover; background-position: center;"></div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold mb-3">Green Pulse</h3>
+            <p class="text-sm opacity-80 mb-4">Aplikasi berbasis web yang dirancang untuk meningkatkan kesadaran lingkungan melalui fitur pelaporan, edukasi, dan gamifikasi. Dibangun menggunakan teknologi web modern, aplikasi ini memungkinkan pengguna untuk berpartisipasi aktif dalam pelestarian lingkungan dengan sistem poin dan informasi berbasis komunitas.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
+              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
+              <span class="project-tag"><i class="fab fa-js mr-1"></i> JavaScript</span>
+              <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span> 
+            </div>
+            <a href="#" class="btn-gradient text-center text-sm py-2 mt-auto opacity-60 cursor-not-allowed">On Progress</a>
+          </div>
+        </div> -->
+      </div>
+    </section>
+
+
+    <!-- About -->
+    <section id="about" class="py-20">
+      <h2 class="text-3xl font-bold text-center mb-16">About Me</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="rounded-lg overflow-hidden shadow-lg">
+          <img src="./assets/foto-naren.jpg" alt="Narendra Satya Adikurniawan" class="w-full object-cover rounded-lg" style="max-height:400px;" />
+        </div>
+        <div>
+          <p class="mb-6 text-lg">
+            Hello! I’m Narendra Satya Adikurniawan, but you can call me Naren. A 5th semester Informatics Engineering student at Universitas Muhammadiyah Surakarta, passionate about building impactful digital experiences through web development and UI/UX design.
+Currently, I’m expanding my backend development skills with Laravel and exploring the world of mobile app development. I’m known for being disciplined, confident, honest, and having strong public communication skills. I thrive in collaborative environments, bringing an analytical, creative, and solution-oriented mindset to every project.
+As a fast learner and adaptive team player, I’m eager to contribute to the tech industry and develop impactful, real-world solutions.
+          </p>
+          <h3 class="text-xl font-bold mt-8 mb-4">Skills</h3>
+          <div class="flex flex-wrap gap-3">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Figma</span>
+            <span class="project-tag">PHP</span>
+            <span class="project-tag">MySQL</span>
+            <span class="project-tag">Java</span>
+            <span class="project-tag">JavaScript</span>
+            <span class="project-tag">HTML</span>
+            <span class="project-tag">CSS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="py-20">
+      <h2 class="text-3xl font-bold text-center mb-16">Experience</h2>
+      <div class="relative pl-8 border-l-2 border-primary">
+        <div class="timeline-item mb-12 relative">
+          <div class="timeline-dot"></div>
+          <div class="text-sm text-primary font-semibold mb-1">Jan 2025 - Now</div>
+          <h3 class="text-xl font-bold">Head of Science and Research</h3>
+          <div class="text-primary font-medium mb-2">HIMATIF UMS</div>
+          <p>Leading the planning and implementation of scientific work programs, such as studies, HIMATIF Learning Center, and Research. Collaborating with members of the Informatics Engineering Association in research activities and web-based
+                        software development. Becoming an Advisor and collaborating in the design of payment system research at an Islamic boarding school located in Ketitang, Boyolali.</p>
+        </div>
+
+        <div class="timeline-item mb-12 relative">
+          <div class="timeline-dot"></div>
+          <div class="text-sm text-primary font-semibold mb-1">Sep 2024 - Jan 2025</div>
+          <h3 class="text-xl font-bold">Programming Algorithm Lab Assistant</h3>
+          <div class="text-primary font-medium mb-2">UMS</div>
+          <p>This activity aims to help students understand the basic concepts of algorithms and programming. In addition, this event also provides support in carrying out practical assignments and projects related to programming. During the practicum,
+                        we help solve technical problems faced by students, such as code debugging and error handling. In addition, we also prepare and manage practicum materials, which include modules, questions, and examples of programming code to support
+                        a more effective learning proces.</p>
+        </div>
+
+        <div class="timeline-item mb-12 relative">
+          <div class="timeline-dot"></div>
+          <div class="text-sm text-primary font-semibold mb-1">Jan 2024 - Dec 2025</div>
+          <h3 class="text-xl font-bold">Staff of Science and Research</h3>
+          <div class="text-primary font-medium mb-2">HIMATIF UMS</div>
+          <p>As a Scientific and Research Staff at HIMATIF UMS. I am responsible for facilitating academic forums and encouraging students' potential in scientific research in the field of Information Technology. My main focus is to develop a research
+                        culture and design innovation, to create an environment for students to explore their research interests. Through a collaborative and educational approach, I strive to create a supportive environment for students in developing
+                        their interests and sharing their knowledge, skills, and ideas in research.</p>
+        </div>
+
+        <div class="timeline-item mb-12 relative">
+          <div class="timeline-dot"></div>
+          <div class="text-sm text-primary font-semibold mb-1">Jan 2023 - Now</div>
+          <h3 class="text-xl font-bold">Staff of Research and Technology</h3>
+          <div class="text-primary font-medium mb-2">FOSTI UMS</div>
+          <p>Facilitate academic forums to encourage exploration of students' potential in information technology, and 
+Fostering a continuous learning mindset and broadening students’ interest in various IT domains.</p>
+        </div>
+
+        <div class="timeline-item mb-12 relative">
+          <div class="timeline-dot"></div>
+          <div class="text-sm text-primary font-semibold mb-1">Aug 2024</div>
+          <h3 class="text-xl font-bold">Podcast Source</h3>
+          <div class="text-primary font-medium mb-2">HIMATIF UMS</div>
+          <p>As a resource person in the Informatics Student Association Podcast, my partner and I discussed the importance of financial management for students. In this session, we explained various strategies for earning income during college
+                        and how to manage finances, especially for students who live in boarding houses.</p>
+        </div>
+
+        <div class="timeline-item relative">
+          <div class="timeline-dot"></div>
+          <div class="text-sm text-primary font-semibold mb-1">Oct 2024</div>
+          <h3 class="text-xl font-bold">Speaker at HIMATIF Learning Center</h3>
+          <div class="text-primary font-medium mb-2">HIMATIF UMS</div>
+          <p>Conducting a discussion of last year's midterm exam questions in the calculus course before the midterm exam.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-200 dark:border-gray-700 mt-20">
+      <div class="text-center">
+        <h3 class="text-2xl font-bold mb-2">Let's Connect</h3>
+        <p class="mb-6 opacity-80">Have an idea or project in mind? Reach out via email or DM!</p>
+        <a href="mailto:narendra.adikurniawan@gmail.com" class="text-primary font-semibold hover:underline">narendra.adikurniawan@gmail.com</a>
+        <div class="flex justify-center gap-6 mt-8 text-2xl">
+          <a href="https://github.com/narendrasatyaa" target="_blank" aria-label="GitHub" class="text-gray-600 dark:text-gray-300 hover:text-primary transition"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/narendra-satya-adikurniawan" target="_blank" aria-label="LinkedIn" class="text-gray-600 dark:text-gray-300 hover:text-primary transition"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://instagram.com/narenlabs" target="_blank" aria-label="Instagram" class="text-gray-600 dark:text-gray-300 hover:text-primary transition"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p class="mt-10 text-sm opacity-70">© <span id="year">2025</span> narenlabs. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
