@@ -12,12 +12,7 @@
       theme: {
         extend: {
           colors: {
-            primary: '#3a86ff',
-            secondary: '#8338ec',
-          },
-          backgroundImage: {
-            'gradient-purple': 'linear-gradient(45deg, #3a86ff, #8338ec)',
-            'card-hover': 'linear-gradient(45deg, #3a86ff, #8338ec)',
+            accent: '#000000',
           },
         },
       },
@@ -25,57 +20,176 @@
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-  .category-btn {
-    @apply bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200;
-  }
-
-  .category-btn:hover:not(.active) {
-    @apply bg-primary text-white scale-105 shadow-md;
-  }
-
-  .category-btn.active {
-    @apply bg-gradient-to-r from-primary to-secondary text-white border-transparent shadow-lg scale-105;
-  }
-</style>
-  <!-- <style>
-    .btn-gradient {
-      @apply inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-full shadow-md hover:shadow-lg hover:translate-y-[-3px] transition-all duration-300;
+    .btn-minimal {
+      background: #000000;
+      color: white;
+      font-weight: 500;
+      border-radius: 0.375rem;
+      border: 2px solid #000000;
+      transition: all 0.3s ease;
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
     }
-    .project-card {
-      @apply flex flex-col h-full transition-all duration-500 hover:translate-y-[-10px] hover:shadow-2xl;
+    
+    .btn-minimal:hover {
+      background: transparent;
+      color: #000000;
+      transform: translateY(-2px);
     }
-    .project-badge {
-      @apply absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold uppercase text-white;
+    
+    .dark .btn-minimal {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
     }
-    .ui-badge { @apply bg-red-500; }
-    .web-badge { @apply bg-teal-500; }
+    
+    .dark .btn-minimal:hover {
+      background: transparent;
+      color: #ffffff;
+    }
+    
     .project-tag {
-      @apply bg-blue-100 text-primary px-3 py-1 rounded-full text-xs font-medium;
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #e5e7eb;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.375rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
     }
+    
+    .dark .project-tag {
+      background: #374151;
+      color: #f9fafb;
+      border-color: #4b5563;
+    }
+    
+    .project-card {
+      transition: all 0.5s ease;
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    .project-card.hidden {
+      opacity: 0;
+      transform: scale(0.9);
+      height: 0;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+    
+    .category-btn {
+      background: white;
+      border: 2px solid #e5e7eb;
+      color: #374151;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .dark .category-btn {
+      background: #1f2937;
+      border-color: #4b5563;
+      color: #e5e7eb;
+    }
+    
+    .category-btn:hover:not(.active) {
+      background: #f9fafb;
+      border-color: #000000;
+      color: #000000;
+      transform: translateY(-2px);
+    }
+    
+    .dark .category-btn:hover:not(.active) {
+      background: #374151;
+      border-color: #ffffff;
+      color: #ffffff;
+    }
+    
+    .category-btn.active {
+      background: #000000;
+      color: white;
+      border-color: #000000;
+      transform: translateY(-2px);
+    }
+    
+    .dark .category-btn.active {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+    }
+    
     .timeline-dot::before {
-      @apply absolute left-0 top-6 w-4 h-4 bg-primary border-4 border-secondary rounded-full -translate-x-1/2;
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 1.5rem;
+      width: 1rem;
+      height: 1rem;
+      background: #000000;
+      border: 3px solid #ffffff;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 0 2px #000000;
     }
-    .dark .project-tag { @apply bg-blue-900 text-blue-200; }
-  </style> -->
+    
+    .dark .timeline-dot::before {
+      background: #ffffff;
+      border-color: #000000;
+      box-shadow: 0 0 0 2px #ffffff;
+    }
+  </style>
+
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans leading-relaxed dark:bg-gray-900 dark:text-gray-100">
   <div class="container mx-auto px-6">
-    <header class="py-8 flex justify-between items-center">
-      <div class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+    <header class="py-8 flex justify-between items-center sticky top-0 bg-gray-50 dark:bg-gray-900 z-50 backdrop-blur-sm bg-opacity-90 transition-transform duration-300">
+      <div class="text-2xl font-bold text-gray-900 dark:text-white">
         narenlabs.
       </div>
+      <nav class="hidden md:flex space-x-8">
+        <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">About</a>
+        <a href="#projects" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Projects</a>
+        <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Experience</a>
+        <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Contact</a>
+      </nav>
+      <div class="flex items-center gap-4">
         <button class="theme-toggle" id="themeToggle">🌓</button>
+        <button class="md:hidden" id="mobileMenuToggle">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+      <!-- Mobile Menu -->
+      <div class="absolute top-full left-0 right-0 bg-gray-50 dark:bg-gray-900 shadow-lg md:hidden hidden" id="mobileMenu">
+        <nav class="flex flex-col py-4">
+          <a href="#about" class="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">About</a>
+          <a href="#projects" class="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">Projects</a>
+          <a href="#experience" class="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">Experience</a>
+          <a href="#contact" class="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">Contact</a>
+        </nav>
+      </div>
     </header>
     <section class="py-20 text-center">
       <h1 class="text-4xl md:text-6xl font-bold mb-6">
-        Hi, I'm <span class="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">Narendra</span>
+        Hi, I'm <span class="text-gray-900 dark:text-white">Narendra</span>
       </h1>
-      <p class="max-w-3xl mx-auto text-lg opacity-90 mb-10">
-        Informatics undergraduate at Muhammadiyah University of Surakarta with a growing focus in Fullstack Web Development. Enthusiastic about frontend technologies and UI/UX design, I enjoy building intuitive and user-friendly digital products while continuously learning and evolving in the tech space.
+      <p class="max-w-3xl mx-auto text-lg opacity-90 mb-10"> Fullstack Developer & UI/UX Enthusiast | Currently learning Swift & Mobile Dev.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href="#projects" class="btn-gradient">View My Work</a>
-        <a href="https://drive.google.com/drive/folders/1LnqQIyaZcuw961yKZr07sXRSYq9HlaDQ?usp=drive_link" target="_blank" class="btn-gradient">Download CV</a>
+        <a href="#projects" class="btn-minimal">View My Work</a>
+        <a href="https://drive.google.com/drive/folders/1LnqQIyaZcuw961yKZr07sXRSYq9HlaDQ?usp=drive_link" target="_blank" class="btn-minimal">Download CV</a>
       </div>
     </section>
 
@@ -112,7 +226,7 @@
               <span class="project-tag"><i class="fas fa-mouse-pointer mr-1"></i> Prototyping</span>
               <span class="project-tag"><i class="fas fa-search mr-1"></i> UX Research</span>
             </div>
-            <a href="https://www.figma.com/design/lcDXB6bvxqRzyc3K7Skxht/RPL-KaryaHub?node-id=103-1015&t=j1lExuEuL7LEJsZL-1" class="btn-gradient text-center text-sm py-2 mt-auto">View Design</a>
+            <a href="https://www.figma.com/design/lcDXB6bvxqRzyc3K7Skxht/RPL-KaryaHub?node-id=103-1015&t=j1lExuEuL7LEJsZL-1" class="btn-minimal text-center text-sm py-2 mt-auto">View Design</a>
           </div>
         </div>
 
@@ -127,7 +241,7 @@
               <span class="project-tag"><i class="fas fa-mouse-pointer mr-1"></i> Prototyping</span>
               <span class="project-tag"><i class="fas fa-search mr-1"></i> UX Research</span>
             </div>
-            <a href="https://www.figma.com/design/tByW5Ph0Q6vd3R5HpDAgLJ/Aplikasi-Pemesanan-Makanan-Laukita-?node-id=0-1&t=7fezFG7zJ7Ot1RVR-1" class="btn-gradient text-center text-sm py-2 mt-auto">View Design</a>
+            <a href="https://www.figma.com/design/tByW5Ph0Q6vd3R5HpDAgLJ/Aplikasi-Pemesanan-Makanan-Laukita-?node-id=0-1&t=7fezFG7zJ7Ot1RVR-1" class="btn-minimal text-center text-sm py-2 mt-auto">View Design</a>
           </div>
         </div>
 
@@ -142,7 +256,7 @@
               <span class="project-tag"><i class="fas fa-mouse-pointer mr-1"></i> Prototyping</span>
               <span class="project-tag"><i class="fas fa-search mr-1"></i> UX Research</span>
             </div>
-            <a href="https://www.figma.com/design/I4Xo7v4uJHqMmbT43tXSSy/WakafPintar?node-id=0-1&t=4xYig8TDLArqAieg-1" class="btn-gradient text-center text-sm py-2 mt-auto">View Design</a>
+            <a href="https://www.figma.com/design/I4Xo7v4uJHqMmbT43tXSSy/WakafPintar?node-id=0-1&t=4xYig8TDLArqAieg-1" class="btn-minimal text-center text-sm py-2 mt-auto">View Design</a>
           </div>
         </div>
 
@@ -157,7 +271,7 @@
               <span class="project-tag"><i class="fas fa-mouse-pointer mr-1"></i> Prototyping</span>
               <span class="project-tag"><i class="fas fa-search mr-1"></i> UX Research</span>
             </div>
-            <a href="https://www.figma.com/design/tByW5Ph0Q6vd3R5HpDAgLJ/Aplikasi-Pemesanan-Makanan-Laukita-?node-id=0-1&t=7fezFG7zJ7Ot1RVR-1" class="btn-gradient text-center text-sm py-2 mt-auto">View Design</a>
+            <a href="https://www.figma.com/design/hJDL9TCpktfJLvjYgtqvdS/MyPresensi-UMS-(Redesign)?node-id=0-1" class="btn-minimal text-center text-sm py-2 mt-auto">View Design</a>
           </div>
         </div>
 
@@ -172,7 +286,7 @@
               <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
               <span class="project-tag"><i class="fab fa-js mr-1"></i> JavaScript</span>
             </div>
-            <a href="https://iftar-countdown.vercel.app/" class="btn-gradient text-center text-sm py-2 mt-auto">View Source Code</a>
+            <a href="https://iftar-countdown.vercel.app/" class="btn-minimal text-center text-sm py-2 mt-auto">View Project</a>
           </div>
         </div>
         <!-- Qwen Ai -->
@@ -187,7 +301,7 @@
               <span class="project-tag"> Dashscope</span>
               <span class="project-tag">Streamlit</span>
             </div>
-            <a href="https://tirtaai.streamlit.app/" class="btn-gradient text-center text-sm py-2 mt-auto">View Source Code</a>
+            <a href="https://tirtaai.streamlit.app/" class="btn-minimal text-center text-sm py-2 mt-auto">View Project</a>
           </div>
         </div>
 
@@ -203,7 +317,7 @@
               <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
               <span class="project-tag"><i class="fas fa-database mr-1"></i> MySQL</span>
             </div>
-            <a href="#" class="btn-gradient text-center text-sm py-2 mt-auto opacity-60 cursor-not-allowed">Private</a>
+            <a href="#" class="btn-minimal text-center text-sm py-2 mt-auto opacity-60 cursor-not-allowed">Private</a>
           </div>
         </div>
         <!-- Web Presensi -->
@@ -218,7 +332,7 @@
               <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
               <span class="project-tag"><i class="fas fa-database mr-1"></i> MySQL</span>
             </div>
-            <a href="https://github.com/narendrasatyaa/sistem-presensi-perusahaan/" class="btn-gradient text-center text-sm py-2 mt-auto ">View Source Code</a>
+            <a href="https://github.com/narendrasatyaa/sistem-presensi-perusahaan/" class="btn-minimal text-center text-sm py-2 mt-auto ">View Source Code</a>
           </div>
         </div>
 
@@ -234,7 +348,7 @@
               <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
               <span class="project-tag"><i class="fas fa-database mr-1"></i> MySQL</span>
             </div>
-            <a href="https://github.com/narendrasatyaa/web-dev-crud-with-php" class="btn-gradient text-center text-sm py-2 mt-auto">View Source Code</a>
+            <a href="https://github.com/narendrasatyaa/web-dev-crud-with-php" class="btn-minimal text-center text-sm py-2 mt-auto">View Source Code</a>
           </div>
         </div>
 
@@ -251,7 +365,7 @@
               <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
               <span class="project-tag"><i class="fa-solid fa-database"></i> MySQL</span>
             </div>
-            <a href="https://himatifums.org/" class="btn-gradient text-center text-sm py-2 mt-auto">Visit Site</a>
+            <a href="https://himatifums.org/" class="btn-minimal text-center text-sm py-2 mt-auto">Visit Site</a>
           </div>
         </div>
         <!-- Website Pondok Bunga -->
@@ -267,7 +381,7 @@
               <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
               <span class="project-tag"><i class="fa-solid fa-database"></i> MySQL</span>
             </div>
-            <a href="https://pondokbungasrirejeki.infintyfree.app/" class="btn-gradient text-center text-sm py-2 mt-auto">Visit Site</a>
+            <a href="https://pondokbungasrirejeki.infintyfree.app/" class="btn-minimal text-center text-sm py-2 mt-auto">Visit Site</a>
           </div>
         </div>
         <!-- Website About Campus ID -->
@@ -282,7 +396,7 @@
               <span class="project-tag"><i class="fab fa-js mr-1"></i> JavaScript</span>
               <!-- <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span> -->
             </div>
-            <a href="https://aboutcampusid.surge.sh" class="btn-gradient text-center text-sm py-2 mt-auto">Visit Site</a>
+            <a href="https://aboutcampusid.surge.sh" class="btn-minimal text-center text-sm py-2 mt-auto">Visit Site</a>
           </div>
         </div>
         <!-- Website GreenPulse -->
@@ -297,7 +411,7 @@
               <span class="project-tag"><i class="fab fa-js mr-1"></i> JavaScript</span>
               <!-- <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span> -->
             </div>
-            <a href="https://green-pulse-one.vercel.app/" class="btn-gradient text-center text-sm py-2 mt-auto">Visit Site</a>
+            <a href="https://green-pulse-one.vercel.app/" class="btn-minimal text-center text-sm py-2 mt-auto">Visit Site</a>
           </div>
         </div>
         <!-- Website KenaBatin
@@ -350,76 +464,94 @@ As a fast learner and adaptive team player, I’m eager to contribute to the tec
     <!-- Experience -->
     <section id="experience" class="py-20">
       <h2 class="text-3xl font-bold text-center mb-16">Experience</h2>
-      <div class="relative pl-8 border-l-2 border-primary">
+      <div class="relative pl-8 border-l-2 border-gray-300 dark:border-gray-600">
         <div class="timeline-item mb-12 relative">
-          <div class="timeline-dot"></div>
-          <div class="text-sm text-primary font-semibold mb-1">Jan 2025 - Now</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">Jan 2025 - Now</div>
           <h3 class="text-xl font-bold">Head of Science and Research</h3>
-          <div class="text-primary font-medium mb-2">HIMATIF UMS</div>
+          <div class="text-gray-800 dark:text-gray-200 font-medium mb-2">HIMATIF UMS</div>
           <p>Leading the planning and implementation of scientific work programs, such as studies, HIMATIF Learning Center, and Research. Collaborating with members of the Informatics Engineering Association in research activities and web-based
                         software development. Becoming an Advisor and collaborating in the design of payment system research at an Islamic boarding school located in Ketitang, Boyolali.</p>
         </div>
 
         <div class="timeline-item mb-12 relative">
-          <div class="timeline-dot"></div>
-          <div class="text-sm text-primary font-semibold mb-1">Sep 2024 - Jan 2025</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">Sep 2024 - Jan 2025</div>
           <h3 class="text-xl font-bold">Programming Algorithm Lab Assistant</h3>
-          <div class="text-primary font-medium mb-2">UMS</div>
+          <div class="text-gray-800 dark:text-gray-200 font-medium mb-2">UMS</div>
           <p>This activity aims to help students understand the basic concepts of algorithms and programming. In addition, this event also provides support in carrying out practical assignments and projects related to programming. During the practicum,
                         we help solve technical problems faced by students, such as code debugging and error handling. In addition, we also prepare and manage practicum materials, which include modules, questions, and examples of programming code to support
                         a more effective learning proces.</p>
         </div>
 
         <div class="timeline-item mb-12 relative">
-          <div class="timeline-dot"></div>
-          <div class="text-sm text-primary font-semibold mb-1">Jan 2024 - Dec 2025</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">Jan 2024 - Dec 2025</div>
           <h3 class="text-xl font-bold">Staff of Science and Research</h3>
-          <div class="text-primary font-medium mb-2">HIMATIF UMS</div>
+          <div class="text-gray-800 dark:text-gray-200 font-medium mb-2">HIMATIF UMS</div>
           <p>As a Scientific and Research Staff at HIMATIF UMS. I am responsible for facilitating academic forums and encouraging students' potential in scientific research in the field of Information Technology. My main focus is to develop a research
                         culture and design innovation, to create an environment for students to explore their research interests. Through a collaborative and educational approach, I strive to create a supportive environment for students in developing
                         their interests and sharing their knowledge, skills, and ideas in research.</p>
         </div>
 
         <div class="timeline-item mb-12 relative">
-          <div class="timeline-dot"></div>
-          <div class="text-sm text-primary font-semibold mb-1">Jan 2023 - Now</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">Jan 2023 - Now</div>
           <h3 class="text-xl font-bold">Staff of Research and Technology</h3>
-          <div class="text-primary font-medium mb-2">FOSTI UMS</div>
+          <div class="text-gray-800 dark:text-gray-200 font-medium mb-2">FOSTI UMS</div>
           <p>Facilitate academic forums to encourage exploration of students' potential in information technology, and 
 Fostering a continuous learning mindset and broadening students’ interest in various IT domains.</p>
         </div>
 
         <div class="timeline-item mb-12 relative">
-          <div class="timeline-dot"></div>
-          <div class="text-sm text-primary font-semibold mb-1">Aug 2024</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">Aug 2024</div>
           <h3 class="text-xl font-bold">Podcast Source</h3>
-          <div class="text-primary font-medium mb-2">HIMATIF UMS</div>
+          <div class="text-gray-800 dark:text-gray-200 font-medium mb-2">HIMATIF UMS</div>
           <p>As a resource person in the Informatics Student Association Podcast, my partner and I discussed the importance of financial management for students. In this session, we explained various strategies for earning income during college
                         and how to manage finances, especially for students who live in boarding houses.</p>
         </div>
 
         <div class="timeline-item relative">
-          <div class="timeline-dot"></div>
-          <div class="text-sm text-primary font-semibold mb-1">Oct 2024</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">Oct 2024</div>
           <h3 class="text-xl font-bold">Speaker at HIMATIF Learning Center</h3>
-          <div class="text-primary font-medium mb-2">HIMATIF UMS</div>
+          <div class="text-gray-800 dark:text-gray-200 font-medium mb-2">HIMATIF UMS</div>
           <p>Conducting a discussion of last year's midterm exam questions in the calculus course before the midterm exam.</p>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-gray-200 dark:border-gray-700 mt-20">
-      <div class="text-center">
-        <h3 class="text-2xl font-bold mb-2">Let's Connect</h3>
-        <p class="mb-6 opacity-80">Have an idea or project in mind? Reach out via email or DM!</p>
-        <a href="mailto:narendra.adikurniawan@gmail.com" class="text-primary font-semibold hover:underline">narendra.adikurniawan@gmail.com</a>
-        <div class="flex justify-center gap-6 mt-8 text-2xl">
-          <a href="https://github.com/narendrasatyaa" target="_blank" aria-label="GitHub" class="text-gray-600 dark:text-gray-300 hover:text-primary transition"><i class="fab fa-github"></i></a>
-          <a href="https://linkedin.com/in/narendra-satya-adikurniawan" target="_blank" aria-label="LinkedIn" class="text-gray-600 dark:text-gray-300 hover:text-primary transition"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://instagram.com/narenlabs" target="_blank" aria-label="Instagram" class="text-gray-600 dark:text-gray-300 hover:text-primary transition"><i class="fab fa-instagram"></i></a>
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-8">Let's Work Together</h2>
+        <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+          I'm always open to discussing new opportunities, collaborations, or just having a chat about technology and innovation.
+        </p>
+        <div class="flex flex-wrap justify-center gap-6 mb-8">
+          <a href="mailto:narendra.adikurniawan@gmail.com" class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-6 py-3 rounded-lg font-medium hover:opacity-80 transition-all duration-300 transform hover:scale-105 border-2 border-transparent hover:border-gray-300 dark:hover:border-gray-600">
+            <i class="fas fa-envelope mr-2"></i>Send Email
+          </a>
+          <a href="https://linkedin.com/in/narendra-satya-adikurniawan" target="_blank" class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-6 py-3 rounded-lg font-medium hover:opacity-80 transition-all duration-300 transform hover:scale-105 border-2 border-transparent hover:border-gray-300 dark:hover:border-gray-600">
+            <i class="fab fa-linkedin-in mr-2"></i>LinkedIn
+          </a>
+          <a href="https://github.com/narendrasatyaa" target="_blank" class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-6 py-3 rounded-lg font-medium hover:opacity-80 transition-all duration-300 transform hover:scale-105 border-2 border-transparent hover:border-gray-300 dark:hover:border-gray-600">
+            <i class="fab fa-github mr-2"></i>GitHub
+          </a>
         </div>
-        <p class="mt-10 text-sm opacity-70">© <span id="year">2025</span> narenlabs. All rights reserved.</p>
+        <div class="flex justify-center gap-6 text-2xl">
+          <a href="https://github.com/narendrasatyaa" target="_blank" aria-label="GitHub" class="text-white opacity-80 hover:opacity-100 transition-opacity">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/narendra-satya-adikurniawan" target="_blank" aria-label="LinkedIn" class="text-white opacity-80 hover:opacity-100 transition-opacity">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://instagram.com/narenlabs" target="_blank" aria-label="Instagram" class="text-white opacity-80 hover:opacity-100 transition-opacity">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+      <div class="container mx-auto px-6 text-center">
+        <p class="text-sm opacity-70">© <span id="year">2025</span> narenlabs. Built with ❤️ using HTML, CSS, and JavaScript.</p>
       </div>
     </footer>
   </div>
