@@ -1,85 +1,90 @@
-// script.js
 document.addEventListener("DOMContentLoaded", () => {
+  // --- 1. Dark Mode Logic ---
   const themeToggle = document.getElementById("themeToggle");
   const html = document.documentElement;
-  const yearSpan = document.getElementById("year");
-  const mobileMenuToggle = document.getElementById("mobileMenuToggle");
-  const mobileMenu = document.getElementById("mobileMenu");
-
-  // Set tahun
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
-
-  // Dark mode
+  
+  // Cek preferensi user yang tersimpan
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
     html.classList.add("dark");
   }
-  themeToggle.addEventListener("click", () => {
-    html.classList.toggle("dark");
-    localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
-  });
 
-  // Mobile menu
-  if (mobileMenuToggle && mobileMenu) {
-    mobileMenuToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
-
-    // Close mobile menu when clicking on a link
-    const mobileMenuLinks = mobileMenu.querySelectorAll("a");
-    mobileMenuLinks.forEach(link => {
-      link.addEventListener("click", () => {
-        mobileMenu.classList.add("hidden");
-      });
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (!mobileMenuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
-        mobileMenu.classList.add("hidden");
-      }
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      html.classList.toggle("dark");
+      localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
     });
   }
 
-  // Filter Projects
+  // --- 2. Mobile Menu Logic ---
+  const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (mobileMenuToggle && mobileMenu) {
+    mobileMenuToggle.addEventListener("click", () => {
+      mobileMenu.classList.remove("hidden"); // Tampilkan menu
+      if (mobileMenu.style.display === "none" || !mobileMenu.style.display) {
+         mobileMenu.style.display = "block";
+      } else {
+         mobileMenu.style.display = "none";
+      }
+    });
+
+    // Close menu saat link diklik
+    mobileMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.style.display = "none";
+      });
+    });
+  }
+
+  // --- 3. Project Filtering Logic (PERBAIKAN UTAMA) ---
   const categoryBtns = document.querySelectorAll(".category-btn");
   const projectCards = document.querySelectorAll(".project-card");
 
   categoryBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-      const category = btn.getAttribute("data-category");
+      // a. Hapus class active dari semua tombol
+      categoryBtns.forEach(b => {
+        b.classList.remove("active");
+        b.classList.remove("bg-black", "text-white", "border-black"); // Hapus style aktif (sesuaikan dengan class tailwind kamu)
+        // Reset ke style tidak aktif (opsional, tergantung CSS kamu)
+      });
 
-      // Update active button
-      categoryBtns.forEach(b => b.classList.remove("active"));
+      // b. Tambah class active ke tombol yang diklik
       btn.classList.add("active");
+      
+      // c. Ambil kategori yang dipilih
+      const selectedCategory = btn.getAttribute("data-category");
 
-      // Filter projects with simple fade
+      // d. Filter kartu
       projectCards.forEach(card => {
         const cardCategory = card.getAttribute("data-category");
-        if (category === "all" || cardCategory === category) {
+
+        // Logika: Jika 'all' ATAU kategori kartu cocok dengan yang dipilih
+        if (selectedCategory === "all" || cardCategory === selectedCategory) {
           card.classList.remove("hidden");
-          card.style.display = "";
+          card.style.display = "flex"; // Pastikan tampil flex agar layout tidak rusak
+          // Tambahkan animasi fade-in kecil
+          setTimeout(() => {
+            card.style.opacity = "1";
+            card.style.transform = "scale(1)";
+          }, 50);
         } else {
-          card.classList.add("hidden");
-          card.style.display = "none";
+          card.style.opacity = "0";
+          card.style.transform = "scale(0.95)";
+          setTimeout(() => {
+            card.classList.add("hidden");
+            card.style.display = "none";
+          }, 300); // Tunggu transisi selesai baru hide
         }
       });
     });
   });
 
-  // Smooth scrolling for navigation links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    });
-  });
+  // --- 4. Auto Year Update ---
+  const yearSpan = document.getElementById("year");
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
 });
