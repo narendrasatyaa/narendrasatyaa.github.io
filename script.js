@@ -1,94 +1,111 @@
-// script.js
-document.addEventListener("DOMContentLoaded", () => {
-  const themeToggle = document.getElementById("themeToggle");
-  const html = document.documentElement;
-  const yearSpan = document.getElementById("year");
-  const mobileMenuToggle = document.getElementById("mobileMenuToggle");
-  const mobileMenu = document.getElementById("mobileMenu");
+// Year
+document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Set tahun
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
+// Theme
+const html = document.documentElement;
+const btn = document.getElementById("themeToggle");
+const ico = document.getElementById("themeIco");
 
-  // Dark mode
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-    html.classList.add("dark");
-  }
-  themeToggle.addEventListener("click", () => {
-    html.classList.toggle("dark");
-    localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
-  });
+if (localStorage.getItem("theme") === "dark") {
+  html.classList.add("dark");
+  ico.className = "fas fa-sun";
+}
 
-  // Mobile menu
-  if (mobileMenuToggle && mobileMenu) {
-    mobileMenuToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
+btn.addEventListener("click", () => {
+  html.classList.toggle("dark");
+  const dark = html.classList.contains("dark");
+  ico.className = dark ? "fas fa-sun" : "fas fa-moon";
+  localStorage.setItem("theme", dark ? "dark" : "light");
+});
 
-    // Close mobile menu when clicking on a link
-    const mobileMenuLinks = mobileMenu.querySelectorAll("a");
-    mobileMenuLinks.forEach(link => {
-      link.addEventListener("click", () => {
-        mobileMenu.classList.add("hidden");
-      });
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (!mobileMenuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
-        mobileMenu.classList.add("hidden");
-      }
-    });
-  }
-
-  // Filter Projects
-  const categoryBtns = document.querySelectorAll(".category-btn");
-  const projectCards = document.querySelectorAll(".project-card");
-
-  categoryBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const category = btn.getAttribute("data-category");
-
-      // Update active button
-      categoryBtns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      // Filter projects
-      projectCards.forEach(card => {
-        const cardCategory = card.getAttribute("data-category");
-        
-        // Reset any inline styles
-        card.style.opacity = "";
-        card.style.transform = "";
-        card.style.height = "";
-        card.style.padding = "";
-        card.style.margin = "";
-        card.style.overflow = "";
-        
-        if (category === "all" || cardCategory === category) {
-          card.classList.remove("hidden");
-          card.style.display = "flex";
-        } else {
-          card.classList.add("hidden");
-          card.style.display = "none";
-        }
-      });
-    });
-  });
-
-  // Smooth scrolling for navigation links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach((a) => {
+  a.addEventListener("click", (e) => {
+    const t = document.querySelector(a.getAttribute("href"));
+    if (t) {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    });
+      t.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   });
 });
+
+// Dock active
+const secs = [
+  "home",
+  "projects",
+  "about",
+  "experience",
+  "honors",
+  "faq",
+  "contact",
+];
+const links = document.querySelectorAll(".dock-link[data-s]");
+const obs = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        links.forEach((l) => l.classList.remove("active"));
+        const a = document.querySelector(`.dock-link[data-s="${e.target.id}"]`);
+        if (a) a.classList.add("active");
+      }
+    });
+  },
+  { threshold: 0.25 },
+);
+secs.forEach((id) => {
+  const el = document.getElementById(id);
+  if (el) obs.observe(el);
+});
+
+// Project filter
+const catBtns = document.querySelectorAll(".cat-btn");
+const cards = document.querySelectorAll(".pcard");
+
+filterCat("selected");
+
+catBtns.forEach((b) =>
+  b.addEventListener("click", () => {
+    catBtns.forEach((x) => x.classList.remove("active"));
+    b.classList.add("active");
+    filterCat(b.getAttribute("data-cat"));
+  }),
+);
+
+function filterCat(cat) {
+  cards.forEach((c) => {
+    const cc = c.getAttribute("data-cat");
+    const tags = c.getAttribute("data-tags") || "";
+    const show =
+      cat === "all" ||
+      (cat === "selected" && tags.includes("selected")) ||
+      cc === cat;
+    if (show) {
+      c.style.display = "flex";
+      setTimeout(() => c.classList.remove("hidden"), 30);
+    } else {
+      c.classList.add("hidden");
+      setTimeout(() => {
+        if (c.classList.contains("hidden")) c.style.display = "none";
+      }, 450);
+    }
+  });
+}
+
+// FAQ
+function toggleFaq(btn) {
+  const item = btn.closest(".faq-item");
+  const isOpen = item.classList.contains("open");
+  document
+    .querySelectorAll(".faq-item")
+    .forEach((f) => f.classList.remove("open"));
+  if (!isOpen) item.classList.add("open");
+}
+
+// Responsive about grid
+function setAboutGrid() {
+  const ag = document.querySelector(".about-grid");
+  if (!ag) return;
+  ag.style.gridTemplateColumns = window.innerWidth < 768 ? "1fr" : "1fr 1fr";
+}
+window.addEventListener("resize", setAboutGrid);
+setAboutGrid();

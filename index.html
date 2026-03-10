@@ -1,801 +1,789 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Narendra Satya Adikurniawan | Portfolio</title>
   <link rel="shortcut icon" href="./assets/pp-bento-github-dll.webp" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: '#3a86ff',
-            secondary: '#8338ec',
-            accent: '#000000',
-          },
-        },
-      },
+      theme: { extend: {} }
     };
-
-    // Custom filter logic for Selected Work
-    document.addEventListener('DOMContentLoaded', () => {
-      const filterButtons = document.querySelectorAll('.category-btn');
-      const projectCards = document.querySelectorAll('.project-card');
-
-      // Initial load: show only 'selected' projects
-      filterProjects('selected');
-
-      filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const category = button.getAttribute('data-category');
-
-          // Set active button
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-
-          filterProjects(category);
-        });
-      });
-
-      function filterProjects(category) {
-        projectCards.forEach(card => {
-          const cardCategory = card.getAttribute('data-category');
-          const cardTags = card.getAttribute('data-tags');
-
-          let isVisible = false;
-
-          if (category === 'all') {
-            isVisible = true;
-          } else if (category === 'selected') {
-            // Show projects that have the 'selected' tag
-            isVisible = cardTags && cardTags.includes('selected');
-          } else if (category === cardCategory) {
-            // Show projects that match the UI or Web category
-            isVisible = true;
-          }
-
-          // Apply transition for hiding/showing
-          if (isVisible) {
-            // If initially hidden, remove hidden class right away, then add animation classes
-            card.style.display = 'flex'; // Ensure it's displayed for animation
-            setTimeout(() => card.classList.remove('hidden'), 50);
-          } else {
-            // Apply hidden class first
-            card.classList.add('hidden');
-            // After transition completes, set display to none (optional, but good for flow)
-            setTimeout(() => {
-              if (card.classList.contains('hidden')) {
-                card.style.display = 'none';
-              }
-            }, 500); // Match this with project-card transition time
-          }
-        });
-      }
-    });
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <style>
-    .btn-minimal {
-      background: #000000;
-      color: white;
-      font-weight: 500;
-      border-radius: 0.375rem;
-      border: 2px solid #000000;
-      transition: all 0.3s ease;
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      text-decoration: none;
-    }
-
-    .btn-minimal:hover {
-      background: transparent;
-      color: #000000;
-      transform: translateY(-2px);
-    }
-
-    .dark .btn-minimal {
-      background: #ffffff;
-      color: #000000;
-      border-color: #ffffff;
-    }
-
-    .dark .btn-minimal:hover {
-      background: transparent;
-      color: #ffffff;
-    }
-
-    .project-tag {
-      background: #f3f4f6;
-      color: #374151;
-      border: 1px solid #e5e7eb;
-      padding: 0.25rem 0.75rem;
-      border-radius: 0.375rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .dark .project-tag {
-      background: #374151;
-      color: #f9fafb;
-      border-color: #4b5563;
-    }
-
-    .project-card {
-      transition: all 0.5s ease;
-      opacity: 1;
-      transform: scale(1);
-      display: flex;
-      /* Ensure display is set for better grid layout when showing */
-      flex-direction: column;
-    }
-
-    .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    }
-
-    .project-card.hidden {
-      opacity: 0;
-      transform: scale(0.9);
-      height: 0;
-      padding: 0;
-      margin: 0;
-      overflow: hidden;
-      display: none !important;
-      /* Hide completely after transition */
-    }
-
-    .category-btn {
-      background: white;
-      border: 2px solid #e5e7eb;
-      color: #374151;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.375rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .dark .category-btn {
-      background: #1f2937;
-      border-color: #4b5563;
-      color: #e5e7eb;
-    }
-
-    .category-btn:hover:not(.active) {
-      background: #f9fafb;
-      border-color: #000000;
-      color: #000000;
-      transform: translateY(-2px);
-    }
-
-    .dark .category-btn:hover:not(.active) {
-      background: #374151;
-      border-color: #ffffff;
-      color: #ffffff;
-    }
-
-    .category-btn.active {
-      background: #000000;
-      color: white;
-      border-color: #000000;
-      transform: translateY(-2px);
-    }
-
-    .dark .category-btn.active {
-      background: #ffffff;
-      color: #000000;
-      border-color: #ffffff;
-    }
-
-    .::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 1.5rem;
-      width: 1rem;
-      height: 1rem;
-      background: #000000;
-      border: 3px solid #ffffff;
-      border-radius: 50%;
-      transform: translateX(-50%);
-      box-shadow: 0 0 0 2px #000000;
-    }
-
-    .dark .::before {
-      background: #ffffff;
-      border-color: #000000;
-      box-shadow: 0 0 0 2px #ffffff;
-    }
-  </style>
 
 </head>
 
-<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed dark:bg-gray-900 dark:text-gray-100">
-  <div class="container mx-auto px-6">
-    <header
-      class="py-8 flex justify-between items-center sticky top-0 bg-gray-50 dark:bg-gray-900 z-50 backdrop-blur-sm bg-opacity-90 transition-transform duration-300">
-      <div class="text-2xl font-bold text-gray-900 dark:text-white">
-        narenlabs.
-      </div>
-      <nav class="hidden md:flex space-x-8">
-        <a href="#about"
-          class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">About</a>
-        <a href="#projects"
-          class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Projects</a>
-        <a href="#experience"
-          class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Experience</a>
-        <a href="#contact"
-          class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Contact</a>
-      </nav>
-      <div class="absolute top-full left-0 right-0 bg-gray-50 dark:bg-gray-900 shadow-lg md:hidden hidden"
-        id="mobileMenu">
-        <nav class="flex flex-col py-4">
-          <a href="#about"
-            class="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">About</a>
-          <a href="#projects"
-            class="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">Projects</a>
-          <a href="#experience"
-            class="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">Experience</a>
-          <a href="#contact"
-            class="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">Contact</a>
-        </nav>
-      </div>
-    </header>
+<body>
 
-    <section class="py-20 text-center">
-      <h1 class="text-4xl md:text-6xl font-bold mb-6">
-        Hi, I'm <span class="text-gray-900 dark:text-white">Narendra</span>
-      </h1>
-      <p class="max-w-3xl mx-auto text-lg opacity-90 mb-10">
-        Fullstack Developer & UI/UX Enthusiast | <span class="text-blue-500 font-semibold"> <i>Aspiring iOS
-            Developer</i></span>.
-        <br>
-        Currently a 5th Semester Student learning Swift & Mobile Dev.
-      </p>
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href="#projects" class="btn-minimal">View My Work</a>
-        <a href="https://drive.google.com/drive/folders/1_z3ieLHczwGIU1qteFjI8sDJB87xLLB2?usp=drive_link"
-          target="_blank" class="btn-minimal">Download CV</a>
-      </div>
-    </section>
+  <!-- ─── DOCK ──────────────────────────────────────── -->
+  <nav class="dock">
+    <a href="#home"      class="dock-link active" data-s="home">     <i class="fas fa-house"></i>     <span>Home</span></a>
+    <a href="#projects"  class="dock-link"        data-s="projects"> <i class="fas fa-layer-group"></i><span>Projects</span></a>
+    <a href="#about"     class="dock-link"        data-s="about">    <i class="fas fa-user"></i>      <span>About</span></a>
+    <a href="#experience"class="dock-link"        data-s="experience"><i class="fas fa-briefcase"></i> <span>Experience</span></a>
+    <a href="#honors"    class="dock-link"        data-s="honors">   <i class="fas fa-trophy"></i>    <span>Honors</span></a>
+    <a href="#faq"       class="dock-link"        data-s="faq">      <i class="fas fa-circle-question"></i><span>FAQ</span></a>
+    <a href="#contact"   class="dock-link"        data-s="contact">  <i class="fas fa-paper-plane"></i><span>Contact</span></a>
+    <div class="dock-sep"></div>
+    <button class="dock-link" id="themeToggle"><i class="fas fa-moon" id="themeIco"></i></button>
+  </nav>
 
-    <section id="projects" class="py-20">
-      <h2 class="text-3xl font-bold text-center mb-16">My Projects</h2>
-
-      <div class="flex flex-wrap justify-center gap-4 mb-12">
-        <button class="category-btn active px-6 py-3 rounded-full font-semibold transition-all duration-300 transform"
-          data-category="selected">
-          Selected Work
-        </button>
-        <button class="category-btn px-6 py-3 rounded-full font-semibold transition-all duration-300 transform"
-          data-category="all">
-          All Projects
-        </button>
-        <button class="category-btn px-6 py-3 rounded-full font-semibold transition-all duration-300 transform"
-          data-category="ui">
-          UI Design
-        </button>
-        <button class="category-btn px-6 py-3 rounded-full font-semibold transition-all duration-300 transform"
-          data-category="web">
-          Web Development
-        </button>
+  <!-- ─── HOME ─────────────────────────────────────── -->
+  <section id="home">
+    <div class="page">
+      <div class="crumb fade-up">
+        <a href="#home"><i class="fas fa-house" style="font-size:9px"></i></a>
+        <span class="sep">/</span>
+        <span class="now">Home</span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bento fade-up d1">
 
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web"
-          data-tags="selected">
-          <div class="relative h-48"
-            style="background-image: url('./assets/pws-loan.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">PT PWS Internal Loan Website</h3>
-            <p class="text-sm opacity-80 mb-4">A comprehensive web system for managing office asset loans
-              (vehicles, rooms). Features include complex booking logic and file uploads.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-laravel mr-1"></i> Laravel 11</span>
-              <span class="project-tag"><i class="fas fa-bolt mr-1"></i> Vite.js</span>
-              <span class="project-tag"><i class="fas fa-database mr-1"></i> MySQL</span>
+        <!-- INTRO -->
+        <div class="b-card b-intro" style="padding:0; border:none; background:transparent;">
+          <div class="b-intro-inner">
+            <div style="display:flex;align-items:center;gap:7px;margin-bottom:22px;">
+              <span class="dot-green"></span>
             </div>
-            <a href="#" class="btn-minimal text-center text-sm py-2 mt-auto opacity-70 cursor-not-allowed"
-              title="Internal Project">Private</a>
+            <h1 style="font-family:'Syne',sans-serif;font-size:clamp(2.4rem,4.5vw,3.8rem);font-weight:800;line-height:1.1;margin-bottom:16px;">
+              Hi, I'm<br>Narendra
+            </h1>
+            <p style="font-size:0.95rem;opacity:0.7;line-height:1.7;max-width:460px;margin-bottom:28px;">
+              Fullstack Developer &amp; UI/UX Enthusiast. <em style="opacity:1;font-style:normal;font-weight:600;">Aspiring iOS &amp; Mobile Developer</em> - 6th Semester student at UMS, currently learning Swift &amp; Flutter/Dart.
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <a href="#projects" class="btn btn-dark">View My Work</a>
+              <a href="https://drive.google.com/drive/folders/1_z3ieLHczwGIU1qteFjI8sDJB87xLLB2?usp=drive_link" target="_blank" class="btn btn-ghost">Download CV</a>
+            </div>
           </div>
         </div>
 
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web"
-          data-tags="selected">
-          <div class="relative h-48"
-            style="background-image: url('./assets/repotif.webp'); background-size: cover; background-position: center;">
+        <!-- STATUS -->
+        <div class="b-card b-status">
+          <div class="label">Current</div>
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:8px;">
+            <span class="dot-green"></span>
+            <span style="font-size:0.82rem;font-weight:600;">Web Dev Intern @ PT PWS</span>
           </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">Informatics Repository UMS</h3>
-            <p class="text-sm opacity-80 mb-4">Centralized platform for students to access past exam papers
-              (UTS/UAS) and study materials using Laravel 12.</p>
-
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-laravel mr-1"></i> Laravel 12</span>
-              <span class="project-tag"><i class="fas fa-bolt mr-1"></i> Vite.js</span>
-              <span class="project-tag"><i class="fas fa-database mr-1"></i> MySQL</span>
-            </div>
-
-            <a href="https://repotif.himatifums.org/" target="_blank"
-              class="btn-minimal text-center text-sm py-2 mt-auto">Visit Repository</a>
-          </div>
-        </div>
-
-
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="ui"
-          data-tags="selected">
-          <div class="relative h-48"
-            style="background-image: url('./assets/karyahub.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">KaryaHub</h3>
-            <p class="text-sm opacity-80 mb-4">A web application designed to help companies monitor
-              employee attendance, manage leave and permit data, and generate attendance reports
-              automatically and efficiently.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-figma mr-1"></i> Figma</span>
-              <span class="project-tag"><i class="fas fa-mouse-pointer mr-1"></i> Prototyping</span>
-              <span class="project-tag"><i class="fas fa-search mr-1"></i> UX Research</span>
-            </div>
-            <a href="https://www.figma.com/design/lcDXB6bvxqRzyc3K7Skxht/RPL-KaryaHub?node-id=103-1015&t=j1lExuEuL7LEJsZL-1"
-              class="btn-minimal text-center text-sm py-2 mt-auto">View Design</a>
+          <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;margin-bottom:16px;">
+            Building inventory e-Facility Care with Laravel 11 + Fillament. Also learning Swift &amp; Flutter/Dart for mobile development.
+          </p>
+          <div style="height:1px;background:var(--border);margin:14px 0;"></div>
+          <div class="label" style="margin-bottom:10px;">Now Learning</div>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;">
+            <div class="ptag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" style="width:11px;height:11px;"> Swift</div>
+            <div class="ptag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" style="width:11px;height:11px;"> Flutter</div>
+            <div class="ptag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" style="width:11px;height:11px;"> Dart</div>
+            <div class="ptag"><i class="fab fa-apple" style="font-size:10px;"></i> iOS Dev</div>
           </div>
         </div>
 
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="ui"
-          data-tags="selected">
-          <div class="relative h-48"
-            style="background-image: url('./assets/nutri-bunda.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">NutriBunda</h3>
-            <p class="text-sm opacity-80 mb-4">UI/UX design for NutriBunda, a pregnancy nutrition tracking app to
-              prevent stunting, featuring an AI Food Scanner and gamification to motivate users.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-figma mr-1"></i> Figma</span>
-              <span class="project-tag"><i class="fas fa-mouse-pointer mr-1"></i> Prototyping</span>
-              <span class="project-tag"><i class="fas fa-search mr-1"></i> UX Research</span>
-            </div>
-            <a href="https://www.figma.com/design/hEulmMf5Tgo33HKq7siqem/NutriBunda?node-id=I=18-2"
-              class="btn-minimal text-center text-sm py-2 mt-auto">View Design</a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web"
-          data-tags="selected">
-          <div class="relative h-48"
-            style="background-image: url('./assets/tirtaai.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">TirtaAI – Chatbot AI Pintar</h3>
-            <p class="text-sm opacity-80 mb-4">AI chatbot powered by DashScope API, built with Streamlit
-              for a clean and interactive interface.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fa-brands fa-python"></i> Python</span>
-              <span class="project-tag"> Dashscope</span>
-              <span class="project-tag">Streamlit</span>
-            </div>
-            <a href="https://tirtaai.streamlit.app/" class="btn-minimal text-center text-sm py-2 mt-auto">View
-              Project</a>
+        <!-- CONNECT -->
+        <div class="b-card b-links">
+          <div class="label">Connect</div>
+          <div style="display:flex;flex-direction:column;gap:2px;">
+            <a href="https://github.com/narendrasatyaa" target="_blank" class="connect-row">
+              <span class="connect-icon"><i class="fab fa-github"></i></span>
+              narendrasatyaa
+              <i class="fas fa-arrow-right" style="margin-left:auto;font-size:0.65rem;opacity:0.3;"></i>
+            </a>
+            <a href="https://linkedin.com/in/narendrasatyaa" target="_blank" class="connect-row">
+              <span class="connect-icon"><i class="fab fa-linkedin-in"></i></span>
+              LinkedIn
+              <i class="fas fa-arrow-right" style="margin-left:auto;font-size:0.65rem;opacity:0.3;"></i>
+            </a>
+            <a href="https://instagram.com/narenlabs" target="_blank" class="connect-row">
+              <span class="connect-icon"><i class="fab fa-instagram"></i></span>
+              narenlabs
+              <i class="fas fa-arrow-right" style="margin-left:auto;font-size:0.65rem;opacity:0.3;"></i>
+            </a>
+            <a href="mailto:narendraa.adikurniawan@gmail.com" class="connect-row">
+              <span class="connect-icon"><i class="fas fa-envelope"></i></span>
+              Email
+              <i class="fas fa-arrow-right" style="margin-left:auto;font-size:0.65rem;opacity:0.3;"></i>
+            </a>
           </div>
         </div>
 
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web"
-          data-tags="selected">
-          <div class="relative h-48"
-            style="background-image: url('./assets/oprec-hmtf.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">e-Recruitment HIMATIF UMS</h3>
-            <p class="text-sm opacity-80 mb-4">Digital platform to facilitate the online new member registration process
-              for the Informatics Student Association, including transparent and real-time status checking.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
-              <span class="project-tag">Tailwind</span>
-              <span class="project-tag"><i class="fas fa-database mr-1"></i> MySQL</span>
-            </div>
-            <a href="https://oprec.himatifums.org/" class="btn-minimal text-center text-sm py-2 mt-auto">Visit Site</a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="ui">
-          <div class="relative h-48"
-            style="background-image: url('./assets/laukita.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">Laukita (Unfinished)</h3>
-            <p class="text-sm opacity-80 mb-4">A catering app design for customizable food orders with
-              category-based menu selection.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-figma mr-1"></i> Figma</span>
-              <span class="project-tag"><i class="fas fa-mouse-pointer mr-1"></i> Prototyping</span>
-              <span class="project-tag"><i class="fas fa-search mr-1"></i> UX Research</span>
-            </div>
-            <a href="https://www.figma.com/design/tByW5Ph0Q6vd3R5HpDAgLJ/Aplikasi-Pemesanan-Makanan-Laukita-?node-id=0-1&t=7fezFG7zJ7Ot1RVR-1"
-              class="btn-minimal text-center text-sm py-2 mt-auto">View Design</a>
+        <!-- STACK -->
+        <div class="b-card b-stack">
+          <div class="label" style="margin-bottom:14px;">Tech Stack Currently I Learn</div>
+          <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;">
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" style="width:20px;height:20px;"></div><span>Laravel</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" style="width:20px;height:20px;"></div><span>PHP</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" style="width:20px;height:20px;"></div><span>JS</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" style="width:20px;height:20px;"></div><span>Tailwind</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" style="width:20px;height:20px;"></div><span>MySQL</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" style="width:20px;height:20px;"></div><span>Python</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" style="width:20px;height:20px;"></div><span>Django</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" style="width:20px;height:20px;"></div><span>Figma</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" style="width:20px;height:20px;"></div><span>Swift</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" style="width:20px;height:20px;"></div><span>Flutter</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" style="width:20px;height:20px;"></div><span>Dart</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" style="width:20px;height:20px;"></div><span>Vite.js</span></div>
           </div>
         </div>
 
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="ui">
-          <div class="relative h-48"
-            style="background-image: url('./assets/wakaf 1.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">Wakaf Pintar</h3>
-            <p class="text-sm opacity-80 mb-4">A web app for managing employee attendance, leave, and
-              generating reports efficiently.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-figma mr-1"></i> Figma</span>
-              <span class="project-tag"><i class="fas fa-mouse-pointer mr-1"></i> Prototyping</span>
-              <span class="project-tag"><i class="fas fa-search mr-1"></i> UX Research</span>
-            </div>
-            <a href="https://www.figma.com/design/I4Xo7v4uJHqMmbT43tXSSy/WakafPintar?node-id=0-1&t=4xYig8TDLArqAieg-1"
-              class="btn-minimal text-center text-sm py-2 mt-auto">View Design</a>
+        <!-- STATS -->
+        <div class="b-card b-stats">
+          <div class="label" style="margin-bottom:14px;">Glance</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div class="stat-box"><span class="stat-num">13+</span><span class="stat-lbl">Projects</span></div>
+            <div class="stat-box"><span class="stat-num">2+</span><span class="stat-lbl">Yrs Coding</span></div>
+            <div class="stat-box"><span class="stat-num">6th</span><span class="stat-lbl">Semester</span></div>
+            <div class="stat-box"><span class="stat-num">∞</span><span class="stat-lbl">Curiosity</span></div>
           </div>
         </div>
 
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="ui">
-          <div class="relative h-48"
-            style="background-image: url('./assets/mypresensi.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">MyPresensi UMS (Unfinished)</h3>
-            <p class="text-sm opacity-80 mb-4">Redesign of UMS attendance system with course access and
-              schedule integration.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-figma mr-1"></i> Figma</span>
-              <span class="project-tag"><i class="fas fa-mouse-pointer mr-1"></i> Prototyping</span>
-              <span class="project-tag"><i class="fas fa-search mr-1"></i> UX Research</span>
-            </div>
-            <a href="https://www.figma.com/design/hJDL9TCpktfJLvjYgtqvdS/MyPresensi-UMS-(Redesign)?node-id=0-1"
-              class="btn-minimal text-center text-sm py-2 mt-auto">View Design</a>
-          </div>
+        <!-- QUOTE -->
+        <div class="b-card b-quote" style="text-align:center;padding:20px;border-style:dashed;">
+          <p style="font-size:0.9rem;font-style:italic;color:var(--text3);">
+            "Code is not just instructions for machines — it's a medium for ideas."
+          </p>
         </div>
 
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="ui">
-          <div class="relative h-48"
-            style="background-image: url('./assets/kenalbatin.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">KenalBatin (Unfinished)</h3>
-            <p class="text-sm opacity-80 mb-4">Interactive web platform for AI-powered psychological self-reflection,
-              designed to help users explore topics like stress and self-esteem through personalized tests.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
-              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
-              <span class="project-tag"><i class="fab fa-js mr-1"></i> JavaScript</span>
-            </div>
-            <a href="#" class="btn-minimal text-center text-sm py-2 mt-auto opacity-60 cursor-not-allowed"
-              title="Design On Progress">On Progress</a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
-          <div class="relative h-48"
-            style="background-image: url('./assets/puasa.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">Iftar Countdown</h3>
-            <p class="text-sm opacity-80 mb-4">Web app that calculates time to break fast based on user’s
-              location.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
-              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
-              <span class="project-tag"><i class="fab fa-js mr-1"></i> JavaScript</span>
-            </div>
-            <a href="https://iftar-countdown.vercel.app/" class="btn-minimal text-center text-sm py-2 mt-auto">View
-              Project</a>
-          </div>
-        </div>
-
-
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
-          <div class="relative h-48"
-            style="background-image: url('./assets/hmtf.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">HIMATIF Presensi</h3>
-            <p class="text-sm opacity-80 mb-4">QR-based attendance system for student organizations using
-              PHP and MySQL.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
-              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
-              <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
-              <span class="project-tag"><i class="fas fa-database mr-1"></i> MySQL</span>
-            </div>
-            <a href="#" class="btn-minimal text-center text-sm py-2 mt-auto opacity-60 cursor-not-allowed">Private</a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
-          <div class="relative h-48"
-            style="background-image: url('./assets/presensikaryawan.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">Sistem Presensi Karyawan Perusahaan</h3>
-            <p class="text-sm opacity-80 mb-4">Web-based employee attendance system with leave management
-              and admin reporting, built using PHP and MySQL.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
-              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
-              <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
-              <span class="project-tag"><i class="fas fa-database mr-1"></i> MySQL</span>
-            </div>
-            <a href="https://github.com/narendrasatyaa/sistem-presensi-perusahaan/"
-              class="btn-minimal text-center text-sm py-2 mt-auto ">View Source Code</a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
-          <div class="relative h-48"
-            style="background-image: url('./assets/donasi2.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">Web Donasi: Siapa Peduli?</h3>
-            <p class="text-sm opacity-80 mb-4">PHP & MySQL-based donation management system for
-              underprivileged children.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
-              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
-              <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
-              <span class="project-tag"><i class="fas fa-database mr-1"></i> MySQL</span>
-            </div>
-            <a href="https://github.com/narendrasatyaa/web-dev-crud-with-php"
-              class="btn-minimal text-center text-sm py-2 mt-auto">View Source Code</a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
-          <div class="relative h-48"
-            style="background-image: url('./assets/web-hmtf.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">Website Organisasi</h3>
-            <p class="text-sm opacity-80 mb-4">Frontend development for Informatics Student Association
-              with auto-rotating image carousel.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
-              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
-              <span class="project-tag"><i class="fab fa-js mr-1"></i> JavaScript</span>
-              <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
-              <span class="project-tag"><i class="fa-solid fa-database"></i> MySQL</span>
-            </div>
-            <a href="https://himatifums.org/" class="btn-minimal text-center text-sm py-2 mt-auto">Visit
-              Site</a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
-          <div class="relative h-48"
-            style="background-image: url('./assets/pondokbunga.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">Pondok Bunga Sri Rejeki</h3>
-            <p class="text-sm opacity-80 mb-4">Promotional website for a plant store with search,
-              categories, and Google Maps.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
-              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
-              <span class="project-tag"><i class="fab fa-js mr-1"></i> JavaScript</span>
-              <span class="project-tag"><i class="fab fa-php mr-1"></i> PHP</span>
-              <span class="project-tag"><i class="fa-solid fa-database"></i> MySQL</span>
-            </div>
-            <a href="https://pondokbungasrirejeki.infintyfree.app/"
-              class="btn-minimal text-center text-sm py-2 mt-auto">Visit Site</a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
-          <div class="relative h-48"
-            style="background-image: url('./assets/aboutcampus.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">About Campus ID</h3>
-            <p class="text-sm opacity-80 mb-4">Landing page for an education platform with event info and
-              WhatsApp integration.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
-              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
-              <span class="project-tag"><i class="fab fa-js mr-1"></i> JavaScript</span>
-            </div>
-            <a href="https://aboutcampusid.surge.sh" class="btn-minimal text-center text-sm py-2 mt-auto">Visit Site</a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-category="web">
-          <div class="relative h-48"
-            style="background-image: url('./assets/greenpulsee.webp'); background-size: cover; background-position: center;">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3">Green Pulse</h3>
-            <p class="text-sm opacity-80 mb-4">Web app to promote environmental awareness through reporting
-              and gamification.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="project-tag"><i class="fab fa-html5 mr-1"></i> HTML</span>
-              <span class="project-tag"><i class="fab fa-css3-alt mr-1"></i> CSS</span>
-              <span class="project-tag"><i class="fab fa-js mr-1"></i> JavaScript</span>
-            </div>
-            <a href="https://green-pulse-one.vercel.app/" class="btn-minimal text-center text-sm py-2 mt-auto">Visit
-              Site</a>
-          </div>
-        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="about" class="py-20">
-      <h2 class="text-3xl font-bold text-center mb-16">About Me</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div class="rounded-lg overflow-hidden shadow-lg">
-          <img src="./assets/foto-naren.webp" alt="Narendra Satya Adikurniawan" class="w-full object-cover rounded-lg"
-            style="max-height:500px;" />
+  <!-- ─── PROJECTS ──────────────────────────────────── -->
+  <section id="projects" style="background:var(--bg2);padding:80px 0;">
+    <div class="page">
+      <div class="crumb">
+        <a href="#home"><i class="fas fa-house" style="font-size:9px"></i></a>
+        <span class="sep">/</span>
+        <a href="#projects">Work</a>
+        <span class="sep">/</span>
+        <span class="now">Projects</span>
+      </div>
+      <div class="label">Portfolio</div>
+      <h2 class="stitle">My Projects</h2>
+      <p style="color:var(--text3);font-size:0.85rem;margin-bottom:32px;max-width:520px;">Full collection - web apps, UI/UX designs, tools, and everything in between.</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;">
+        <button class="cat-btn active" data-cat="selected">⭐ Selected</button>
+        <button class="cat-btn" data-cat="all">All</button>
+        <button class="cat-btn" data-cat="ui">UI Design</button>
+        <button class="cat-btn" data-cat="web">Web Dev</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;" id="projectGrid">
+
+        <!-- PWS -->
+        <div class="pcard" data-cat="web" data-tags="selected">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/pws-loan.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">PT PWS Internal Loan Website</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">Comprehensive web system for managing office asset loans with complex booking logic and file uploads.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-laravel"></i> Laravel 11</span>
+              <span class="ptag"><i class="fas fa-bolt"></i> Vite.js</span>
+              <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
+            </div>
+            <a href="#" class="btn btn-outline" style="text-align:center;opacity:.5;cursor:not-allowed;">Private</a>
+          </div>
+        </div>
+
+        <!-- Repotif -->
+        <!-- <div class="pcard" data-cat="web" data-tags="selected">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/repotif.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">Informatics Repository UMS</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">Centralized platform for students to access past exam papers (UTS/UAS) and study materials.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-laravel"></i> Laravel 12</span>
+              <span class="ptag"><i class="fas fa-bolt"></i> Vite.js</span>
+              <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
+            </div>
+            <a href="https://repotif.himatifums.org/" target="_blank" class="btn btn-outline" style="text-align:center;">Visit Repository</a>
+          </div>
+        </div> -->
+
+        <!-- KaryaHub -->
+        <div class="pcard" data-cat="ui" data-tags="selected">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/karyahub.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">KaryaHub</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">Web app designed to help companies monitor employee attendance, manage leave and permit data, and generate reports automatically.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-figma"></i> Figma</span>
+              <span class="ptag">Prototyping</span>
+              <span class="ptag">UX Research</span>
+            </div>
+            <a href="https://www.figma.com/design/lcDXB6bvxqRzyc3K7Skxht/RPL-KaryaHub?node-id=103-1015&t=j1lExuEuL7LEJsZL-1" target="_blank" class="btn btn-outline" style="text-align:center;">View Design</a>
+          </div>
+        </div>
+
+        <!-- NutriBunda -->
+        <div class="pcard" data-cat="ui" data-tags="selected">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/nutri-bunda.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">NutriBunda</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">UI/UX design for a pregnancy nutrition tracking app to prevent stunting, featuring an AI Food Scanner and gamification.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-figma"></i> Figma</span>
+              <span class="ptag">Prototyping</span>
+              <span class="ptag">UX Research</span>
+            </div>
+            <a href="https://www.figma.com/design/hEulmMf5Tgo33HKq7siqem/NutriBunda?node-id=I=18-2" target="_blank" class="btn btn-outline" style="text-align:center;">View Design</a>
+          </div>
+        </div>
+
+        <!-- TirtaAI -->
+        <div class="pcard" data-cat="web" data-tags="selected">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/tirtaai.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">TirtaAI – Chatbot AI Pintar</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">AI chatbot powered by DashScope API, built with Streamlit for a clean and interactive interface.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-python"></i> Python</span>
+              <span class="ptag">DashScope</span>
+              <span class="ptag">Streamlit</span>
+            </div>
+            <a href="https://tirtaai.streamlit.app/" target="_blank" class="btn btn-outline" style="text-align:center;">View Project</a>
+          </div>
+        </div>
+
+        <!-- e-Recruitment -->
+        <!-- <div class="pcard" data-cat="web" data-tags="selected">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/oprec-hmtf.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">e-Recruitment HIMATIF UMS</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">Digital platform for online new member registration for the Informatics Student Association, with real-time status checking.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-php"></i> PHP</span>
+              <span class="ptag">Tailwind</span>
+              <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
+            </div>
+            <a href="https://oprec.himatifums.org/" target="_blank" class="btn btn-outline" style="text-align:center;">Visit Site</a>
+          </div>
+        </div> -->
+
+        <!-- Laukita -->
+        <div class="pcard" data-cat="ui">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/laukita.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">Laukita (Unfinished)</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">A catering app design for customizable food orders with category-based menu selection.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-figma"></i> Figma</span>
+              <span class="ptag">Prototyping</span>
+              <span class="ptag">UX Research</span>
+            </div>
+            <a href="https://www.figma.com/design/tByW5Ph0Q6vd3R5HpDAgLJ/Aplikasi-Pemesanan-Makanan-Laukita-?node-id=0-1&t=7fezFG7zJ7Ot1RVR-1" target="_blank" class="btn btn-outline" style="text-align:center;">View Design</a>
+          </div>
+        </div>
+
+        <!-- Wakaf Pintar -->
+        <div class="pcard" data-cat="ui">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/wakaf 1.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">Wakaf Pintar</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">UI/UX design for a digital wakaf management platform, focused on transparency and ease of use.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-figma"></i> Figma</span>
+              <span class="ptag">Prototyping</span>
+              <span class="ptag">UX Research</span>
+            </div>
+            <a href="https://www.figma.com/design/I4Xo7v4uJHqMmbT43tXSSy/WakafPintar?node-id=0-1&t=4xYig8TDLArqAieg-1" target="_blank" class="btn btn-outline" style="text-align:center;">View Design</a>
+          </div>
+        </div>
+
+        <!-- MyPresensi -->
+        <div class="pcard" data-cat="ui">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/mypresensi.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">MyPresensi UMS (Unfinished)</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">Redesign of UMS attendance system with course access and schedule integration.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-figma"></i> Figma</span>
+              <span class="ptag">Prototyping</span>
+              <span class="ptag">UX Research</span>
+            </div>
+            <a href="https://www.figma.com/design/hJDL9TCpktfJLvjYgtqvdS/MyPresensi-UMS-(Redesign)?node-id=0-1" target="_blank" class="btn btn-outline" style="text-align:center;">View Design</a>
+          </div>
+        </div>
+
+        <!-- KenalBatin -->
+        <!-- <div class="pcard" data-cat="ui">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/kenalbatin.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">KenalBatin (Unfinished)</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">Interactive web platform for AI-powered psychological self-reflection, designed to help users explore stress and self-esteem.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-html5"></i> HTML</span>
+              <span class="ptag"><i class="fab fa-css3-alt"></i> CSS</span>
+              <span class="ptag"><i class="fab fa-js"></i> JS</span>
+            </div>
+            <a href="#" class="btn btn-outline" style="text-align:center;opacity:.5;cursor:not-allowed;">On Progress</a>
+          </div>
+        </div> -->
+
+        <!-- Green Pulse -->
+        <div class="pcard" data-cat="web">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/greenpulsee.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">Green Pulse</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">Web app to promote environmental awareness through reporting and gamification.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-html5"></i> HTML</span>
+              <span class="ptag"><i class="fab fa-css3-alt"></i> CSS</span>
+              <span class="ptag"><i class="fab fa-js"></i> JavaScript</span>
+            </div>
+            <a href="https://green-pulse-one.vercel.app/" target="_blank" class="btn btn-outline" style="text-align:center;">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Iftar Countdown -->
+        <div class="pcard" data-cat="web">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/puasa.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">Iftar Countdown</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">Web app that calculates time to break fast based on user's location using geolocation API.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-html5"></i> HTML</span>
+              <span class="ptag"><i class="fab fa-css3-alt"></i> CSS</span>
+              <span class="ptag"><i class="fab fa-js"></i> JavaScript</span>
+            </div>
+            <a href="https://iftar-countdown.vercel.app/" target="_blank" class="btn btn-outline" style="text-align:center;">View Project</a>
+          </div>
+        </div>
+
+        <!-- HIMATIF Presensi -->
+        <div class="pcard" data-cat="web">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/hmtf.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">HIMATIF Presensi</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">QR-based attendance system for student organizations using PHP and MySQL.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-php"></i> PHP</span>
+              <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
+            </div>
+            <a href="#" class="btn btn-outline" style="text-align:center;opacity:.5;cursor:not-allowed;">Private</a>
+          </div>
+        </div>
+
+        <!-- Presensi Karyawan -->
+        <div class="pcard" data-cat="web">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/presensikaryawan.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">Sistem Presensi Karyawan</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">Web-based employee attendance system with leave management and admin reporting, built with PHP and MySQL.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-php"></i> PHP</span>
+              <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
+            </div>
+            <a href="https://github.com/narendrasatyaa/sistem-presensi-perusahaan/" target="_blank" class="btn btn-outline" style="text-align:center;">View Source</a>
+          </div>
+        </div>
+
+        <!-- Web Donasi -->
+        <div class="pcard" data-cat="web">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/donasi2.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">Web Donasi: Siapa Peduli?</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">PHP &amp; MySQL-based donation management system for underprivileged children.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-php"></i> PHP</span>
+              <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
+            </div>
+            <a href="https://github.com/narendrasatyaa/web-dev-crud-with-php" target="_blank" class="btn btn-outline" style="text-align:center;">View Source</a>
+          </div>
+        </div>
+
+        <!-- Website Organisasi -->
+        <!-- <div class="pcard" data-cat="web">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/web-hmtf.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">Website Organisasi HIMATIF</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">Frontend development for Informatics Student Association with auto-rotating image carousel.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-js"></i> JavaScript</span>
+              <span class="ptag"><i class="fab fa-php"></i> PHP</span>
+              <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
+            </div>
+            <a href="https://himatifums.org/" target="_blank" class="btn btn-outline" style="text-align:center;">Visit Site</a>
+          </div>
+        </div> -->
+
+        <!-- Pondok Bunga -->
+        <!-- <div class="pcard" data-cat="web">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/pondokbunga.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">Pondok Bunga Sri Rejeki</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">Promotional website for a plant store with search, categories, and Google Maps integration.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-js"></i> JavaScript</span>
+              <span class="ptag"><i class="fab fa-php"></i> PHP</span>
+              <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
+            </div>
+            <a href="https://pondokbungasrirejeki.infintyfree.app/" target="_blank" class="btn btn-outline" style="text-align:center;">Visit Site</a>
+          </div>
+        </div> -->
+
+        <!-- About Campus -->
+        <div class="pcard" data-cat="web">
+          <div style="height:180px;background:var(--bg2);background-image:url('./assets/aboutcampus.webp');background-size:cover;background-position:center;"></div>
+          <div style="padding:20px;display:flex;flex-direction:column;flex:1;">
+            <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:8px;">About Campus ID</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;flex:1;margin-bottom:12px;">Landing page for an education platform with event info and WhatsApp integration.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+              <span class="ptag"><i class="fab fa-html5"></i> HTML</span>
+              <span class="ptag"><i class="fab fa-js"></i> JavaScript</span>
+            </div>
+            <a href="https://aboutcampusid.surge.sh" target="_blank" class="btn btn-outline" style="text-align:center;">Visit Site</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ──────────────────────────────────────── -->
+  <section id="about">
+    <div class="page">
+      <div class="crumb">
+        <a href="#home"><i class="fas fa-house" style="font-size:9px"></i></a>
+        <span class="sep">/</span>
+        <span class="now">About</span>
+      </div>
+      <div class="label">Who I Am</div>
+      <h2 class="stitle" style="margin-bottom:40px;">About Me</h2>
+
+      <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+        <div>
+          <div style="border-radius:16px;overflow:hidden;border:1px solid var(--border);">
+            <img src="./assets/foto-naren.webp" alt="Narendra Satya Adikurniawan" style="width:100%;max-height:500px;object-fit:cover;display:block;">
+          </div>
         </div>
         <div>
-          <p class="mb-6 text-lg">
-            Hello! I'm Narendra Satya Adikurniawan, an Informatics Engineering student at Muhammadiyah University of
-            Surakarta with a strong interest in software development and UI/UX. I'm currently focused on building my
-            skills as a Fullstack Developer, particularly on backend with Laravel, and learning Swift to achieve my
-            dream of becoming an iOS Developer. I'm known as a disciplined, confident, honest, and communicative person,
-            and enjoy working in a team. With an analytical, creative, and solution-oriented approach, I'm committed to
-            delivering impactful and beneficial digital projects.
+          <p style="font-size:0.95rem;line-height:1.8;color:var(--text2);margin-bottom:18px;">
+            Hello! I'm <strong style="color:var(--text);font-weight:700;">Narendra Satya Adikurniawan</strong>, an Informatics Engineering student at Muhammadiyah University of Surakarta - currently in my 6th semester. I have a strong interest in software development and UI/UX design.
           </p>
-          <h3 class="text-xl font-bold mt-2 mb-6">Tech Stack</h3>
-          <div class="grid grid-cols-3 md:grid-cols-4 gap-6 text-center">
-            <div class="flex flex-col items-center gap-2 group hover:scale-105 transition-transform">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP"
-                class="w-10 h-10">
-              <span class="text-xs font-medium">PHP</span>
-            </div>
-            <div class="flex flex-col items-center gap-2 group hover:scale-105 transition-transform">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel"
-                class="w-10 h-10">
-              <span class="text-xs font-medium">Laravel</span>
-            </div>
-            <div class="flex flex-col items-center gap-2 group hover:scale-105 transition-transform">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"
-                class="w-10 h-10">
-              <span class="text-xs font-medium">MySQL</span>
-            </div>
-
-            <div class="flex flex-col items-center gap-2 group hover:scale-105 transition-transform">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS"
-                class="w-10 h-10">
-              <span class="text-xs font-medium">JavaScript</span>
-            </div>
-            <div class="flex flex-col items-center gap-2 group hover:scale-105 transition-transform">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
-                alt="Tailwind" class="w-10 h-10">
-              <span class="text-xs font-medium">Tailwind</span>
-            </div>
-            <div class="flex flex-col items-center gap-2 group hover:scale-105 transition-transform">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" alt="Vite"
-                class="w-10 h-10">
-              <span class="text-xs font-medium">Vite.js</span>
-            </div>
-
-            <div class="flex flex-col items-center gap-2 group hover:scale-105 transition-transform">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma"
-                class="w-10 h-10">
-              <span class="text-xs font-medium">Figma</span>
-            </div>
-            <div class="flex flex-col items-center gap-2 group hover:scale-105 transition-transform">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"
-                class="w-10 h-10">
-              <span class="text-xs font-medium">Python</span>
-            </div>
-            <div class="flex flex-col items-center gap-2 group hover:scale-105 transition-transform">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" class="w-10 h-10">
-              <span class="text-xs font-medium">Django</span>
-            </div>
+          <p style="font-size:0.95rem;line-height:1.8;color:var(--text2);margin-bottom:28px;">
+            I'm currently focused on Fullstack Development with Laravel on the backend, and learning Swift and Flutter/Dart to pursue my dream of becoming a Mobile Developer. I'm disciplined, solution-oriented, and committed to delivering impactful digital products.
+          </p>
+          <div class="label" style="margin-bottom:16px;">What Tech Currently I Learn</div>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:14px;text-align:center;">
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" style="width:22px;height:22px;"></div><span>PHP</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" style="width:22px;height:22px;"></div><span>Laravel</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" style="width:22px;height:22px;"></div><span>MySQL</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" style="width:22px;height:22px;"></div><span>JS</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" style="width:22px;height:22px;"></div><span>Tailwind</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" style="width:22px;height:22px;"></div><span>Vite.js</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" style="width:22px;height:22px;"></div><span>Figma</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" style="width:22px;height:22px;"></div><span>Python</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" style="width:22px;height:22px;"></div><span>Django</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" style="width:22px;height:22px;"></div><span>Swift</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" style="width:22px;height:22px;"></div><span>Flutter</span></div>
+            <div class="tech-chip"><div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" style="width:22px;height:22px;"></div><span>Dart</span></div>
           </div>
         </div>
       </div>
-    </section>
-    <section id="experience" class="py-20">
-      <h2 class="text-3xl font-bold text-center mb-16">Experience</h2>
-      <div class="relative pl-8 border-l-2 border-gray-300 dark:border-gray-600">
+    </div>
+  </section>
 
-        <div class="timeline-item mb-12 relative">
-          <div class="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">Aug 2025 - Present</div>
-          <h3 class="text-xl font-bold text-blue-600 dark:text-blue-400">Web Development Intern</h3>
-          <div class="text-gray-800 dark:text-gray-200 font-medium mb-2">PT Putra Wijayakusuma Sakti (PWS)
-          </div>
-          <p class="text-sm opacity-80">
-            Developing a full-featured web-based office inventory loan system using Laravel 11 and Vite.js.
-            Designed complex logic for asset booking to prevent double-booking and optimized MySQL database
-            queries for scalability.
-          </p>
-          <div class="mt-2 flex gap-2">
-            <span class="project-tag">Laravel 11</span>
-            <span class="project-tag">Vite.js</span>
-            <span class="project-tag">MySQL</span>
+  <!-- ─── EXPERIENCE ────────────────────────────────── -->
+  <section id="experience" style="background:var(--bg2);">
+    <div class="page">
+      <div class="crumb">
+        <a href="#home"><i class="fas fa-house" style="font-size:9px"></i></a>
+        <span class="sep">/</span>
+        <span class="now">Experience</span>
+      </div>
+      <div class="label">Career</div>
+      <h2 class="stitle" style="margin-bottom:44px;">Experience</h2>
+
+      <div class="tl-wrap">
+
+        <div class="tl-item">
+          <div style="font-size:0.72rem;color:var(--text3);font-weight:600;letter-spacing:0.06em;margin-bottom:5px;">Feb 26 - Present</div>
+          <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:4px;">Web Programming Laboratory Assistant</h3>
+          <div style="font-size:0.82rem;font-weight:600;color:var(--text2);margin-bottom:10px;">Muhammadiyah University of Surakarta (UMS)</div>
+          <p style="font-size:0.83rem;color:var(--text3);line-height:1.7;margin-bottom:12px;">Developing a full-featured web-based office inventory loan system using Laravel 11 and Vite.js. Designed complex logic for asset booking to prevent double-booking and optimized MySQL database queries for scalability.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span class="ptag">PHP</span><span class="ptag">MySQL</span><span class="ptag">JavaScript</span>
           </div>
         </div>
 
-        <div class=" timeline-item mb-12 relative">
-          <div class="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">Jan 2025 - Present</div>
-          <h3 class="text-xl text-blue-600 dark:text-blue-400 font-bold">Head of Science and Research</h3>
-          <div class="text-gray-800 dark:text-gray-200 font-medium mb-2">HIMATIF UMS</div>
-          <p>Leading the planning and implementation of scientific work programs, such as studies, HIMATIF
-            Learning Center, and Research. Collaborating with members of the Informatics Engineering
-            Association in research activities and web-based software development.</p>
-          <div class="mt-2 flex gap-2">
-            <span class="project-tag">Leadership</span>
-            <span class="project-tag">Research</span>
-            <span class="project-tag">Team Management</span>
+        <div class="tl-item">
+          <div style="font-size:0.72rem;color:var(--text3);font-weight:600;letter-spacing:0.06em;margin-bottom:5px;">Aug 25 - Present</div>
+          <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:4px;">IT Intern</h3>
+          <div style="font-size:0.82rem;font-weight:600;color:var(--text2);margin-bottom:10px;">PT Putra Wijayakusuma Sakti (PWS)</div>
+          <!-- <p style="font-size:0.83rem;color:var(--text3);line-height:1.7;margin-bottom:12px;">Developing a full-featured web-based office inventory loan system using Laravel 11 and Vite.js. Designed complex logic for asset booking to prevent double-booking and optimized MySQL database queries for scalability.</p> -->
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span class="ptag">Laravel 11</span><span class="ptag">Vite.js</span><span class="ptag">MySQL</span>
           </div>
         </div>
-        <div class=" timeline-item mb-12 relative">
-          <div class="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">Jan 2023 - Present</div>
-          <h3 class="text-xl text-blue-600 dark:text-blue-400 font-bold">Staff of Research and Technology
-          </h3>
-          <div class="text-gray-800 dark:text-gray-200 font-medium mb-2">FOSTI UMS</div>
-          <p>Facilitating academic forums to encourage exploration of students' potential in information
-            technology, and fostering a continuous learning mindset.</p>
-          <div class="mt-2 flex gap-2">
-            <span class="project-tag">Academic Forums</span>
-            <span class="project-tag">Information Technology</span>
-            <span class="project-tag">Continuous Learning</span>
-          </div>
-        </div>
-        <div class=" timeline-item mb-12 relative">
-          <div class="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">Sep 2024 - Jan 2025</div>
-          <h3 class="text-xl font-bold">Programming Algorithm Lab Assistant</h3>
-          <div class="text-gray-800 dark:text-gray-200 font-medium mb-2">UMS</div>
-          <p>Assisted students in understanding algorithms (Python), solved technical debugging issues, and
-            prepared practicum modules to support effective learning.</p>
-          <div class="mt-2 flex gap-2">
-            <span class="project-tag">Python</span>
-            <span class="project-tag">Algorithms</span>
-          </div>
-        </div>
-    </section>
 
-    <section id="contact" class="py-20 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900">
-      <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold mb-8">Let's Work Together</h2>
-        <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-          I'm always open to discussing new opportunities, collaborations, or just having a chat about
-          technology and innovation.
+        <div class="tl-item">
+          <div style="font-size:0.72rem;color:var(--text3);font-weight:600;letter-spacing:0.06em;margin-bottom:5px;">Jan 25 - Dec 25</div>
+          <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:4px;">Head of Science and Research</h3>
+          <div style="font-size:0.82rem;font-weight:600;color:var(--text2);margin-bottom:10px;">HIMATIF UMS</div>
+          <p style="font-size:0.83rem;color:var(--text3);line-height:1.7;margin-bottom:12px;">Leading the planning and implementation of scientific work programs including HIMATIF Learning Center and Research. Collaborating with members in research activities and web-based software development.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span class="ptag">Leadership</span><span class="ptag">Research</span><span class="ptag">Team Management</span>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div style="font-size:0.72rem;color:var(--text3);font-weight:600;letter-spacing:0.06em;margin-bottom:5px;">Jan 23 - Dec 25</div>
+          <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:4px;">Staff of Research and Technology</h3>
+          <div style="font-size:0.82rem;font-weight:600;color:var(--text2);margin-bottom:10px;">FOSTI UMS</div>
+          <p style="font-size:0.83rem;color:var(--text3);line-height:1.7;margin-bottom:12px;">Facilitating academic forums to encourage exploration of students' potential in information technology, and fostering a continuous learning mindset.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span class="ptag">Academic Forums</span><span class="ptag">Information Technology</span>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div style="font-size:0.72rem;color:var(--text3);font-weight:600;letter-spacing:0.06em;margin-bottom:5px;">SEP 24 - Jan 25</div>
+          <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:4px;">Programming Algorithm Lab Assistant</h3>
+          <div style="font-size:0.82rem;font-weight:600;color:var(--text2);margin-bottom:10px;">Muhammadiyah University of Surakarta (UMS)</div>
+          <p style="font-size:0.83rem;color:var(--text3);line-height:1.7;margin-bottom:12px;">Assisted students in understanding algorithms (Python), solved technical debugging issues, and prepared practicum modules to support effective learning.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span class="ptag">Python</span><span class="ptag">Algorithms</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HONORS & AWARDS ───────────────────────────── -->
+  <section id="honors">
+    <div class="page">
+      <div class="crumb">
+        <a href="#home"><i class="fas fa-house" style="font-size:9px"></i></a>
+        <span class="sep">/</span>
+        <span class="now">Honors &amp; Awards</span>
+      </div>
+      <!-- <div class="label">Recognition</div> -->
+      <h2 class="stitle" style="margin-bottom:10px;">Honors &amp; Awards</h2>
+      <p style="color:var(--text3);font-size:0.85rem;margin-bottom:36px;">Competitions, certifications, and academic recognitions.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;">
+        <div class="award-card">
+          <!-- <div class="award-icon"><i class="fas fa-star"></i></div> -->
+          <div>
+            <div style="font-size:0.7rem;color:var(--text3);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">2026 · Awardee</div>
+            <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:4px;">UMS Library Digital Scholarship Awardee 2026 (IT Category)</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;">Selected as one of the two award recipients in the Information Technology/Information System category</p>
+          </div>
+        </div>
+
+        <div class="award-card">
+          <!-- <div class="award-icon"><i class="fas fa-certificate"></i></div> -->
+          <div>
+            <div style="font-size:0.7rem;color:var(--text3);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">2025 · Awardee</div>
+            <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:4px;">Awardee Beasiswa Bank Jateng Syariah – Batch 3</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;">Selected as a scholarship recipient for the 2025 academic period (Quarter III). This award is granted based on academic evaluation and student achievement criteria at Muhammadiyah University of Surakarta.</p>
+          </div>
+        </div>
+
+        
+        <div class="award-card">
+          <!-- <div class="award-icon"><i class="fas fa-medal"></i></div> -->
+          <div>
+            <div style="font-size:0.7rem;color:var(--text3);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">2025 · Competition</div>
+            <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:4px;">Top 10 Poster Terbaik</h3>
+            <p style="font-size:0.78rem;color:var(--text3);line-height:1.6;">Finalis 10 Besar Lomba Desain Poster Launching DKV UNDHI yang diselenggarakan oleh Universitas Dharma Indonesia pada Juli 2025.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ───────────────────────────────────────── -->
+  <!-- <section id="faq" style="background:var(--bg2);">
+    <div class="page">
+      <div class="crumb">
+        <a href="#home"><i class="fas fa-house" style="font-size:9px"></i></a>
+        <span class="sep">/</span>
+        <span class="now">FAQ</span>
+      </div>
+      <div class="label">Questions</div>
+      <h2 class="stitle" style="margin-bottom:10px;">Frequently Asked</h2>
+      <p style="color:var(--text3);font-size:0.85rem;margin-bottom:36px;">Things people often wonder about.</p>
+
+      <div style="max-width:760px;">
+
+        <div class="faq-item open">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            What kind of projects do you work on?
+            <span class="faq-ico"><i class="fas fa-plus"></i></span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-inner">I work on fullstack web development projects — Laravel/PHP backends, Tailwind frontends, and REST APIs. I'm also open to UI/UX work in Figma and currently exploring mobile apps with Flutter/Dart and Swift. From startup MVPs to internal tools, I'm happy to discuss.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Are you available for freelance or internship?
+            <span class="faq-ico"><i class="fas fa-plus"></i></span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-inner">Yes! I'm open to freelance collaborations and internship opportunities, especially in web development, mobile (iOS/Flutter), or UI/UX design. The best way to reach me is via <a href="https://linkedin.com/in/narendra-satya-adikurniawan" target="_blank" style="color:var(--text);font-weight:600;text-decoration:underline;">LinkedIn</a> or email.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            What is your primary tech stack?
+            <span class="faq-ico"><i class="fas fa-plus"></i></span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-inner">Primary stack: Laravel + MySQL for backend, Vite.js + Tailwind CSS for frontend. Also proficient in vanilla JS, Python (Django), and actively learning Swift and Flutter/Dart for mobile development. For design, I use Figma.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            How long does it take to build a project?
+            <span class="faq-ico"><i class="fas fa-plus"></i></span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-inner">Depends on scope — a simple landing page takes 1–3 days, a full-stack web app with auth and database typically 1–4 weeks. I prioritize clear communication and iterative delivery so you can review progress along the way.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Are your projects open source?
+            <span class="faq-ico"><i class="fas fa-plus"></i></span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-inner">Some projects are open source on my <a href="https://github.com/narendrasatyaa" target="_blank" style="color:var(--text);font-weight:600;text-decoration:underline;">GitHub</a>. Internal or client projects are private, but I'm happy to walk you through my process during a portfolio call.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            How do I contact you?
+            <span class="faq-ico"><i class="fas fa-plus"></i></span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-inner">Best reach via <a href="https://linkedin.com/in/narendra-satya-adikurniawan" target="_blank" style="color:var(--text);font-weight:600;text-decoration:underline;">LinkedIn</a> or email at <strong style="color:var(--text);">narendrasatyaa@gmail.com</strong>. Also find me on GitHub as <a href="https://github.com/narendrasatyaa" target="_blank" style="color:var(--text);font-weight:600;text-decoration:underline;">narendrasatyaa</a>. I usually reply within 24 hours.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section> -->
+
+  <section id="faq" style="background:var(--bg2);">
+    <div class="page">
+      <div class="crumb">
+        <a href="#home"><i class="fas fa-house" style="font-size:9px"></i></a>
+        <span class="sep">/</span>
+        <span class="now">FAQ</span>
+      </div>
+      <div class="label">Questions</div>
+      <h2 class="stitle" style="margin-bottom:10px;">Frequently Asked</h2>
+      <p style="color:var(--text3);font-size:0.85rem;margin-bottom:36px;">Things people often wonder about.</p>
+
+      <div style="max-width:760px;">
+
+        <div class="faq-item open">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            What kind of projects do you work on?
+            <span class="faq-ico"><i class="fas fa-plus"></i></span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-inner">Saya fokus pada pengembangan aplikasi web Full-stack menggunakan ekosistem Laravel dan MySQL, mulai dari sistem inventaris kantor hingga platform edukasi. Selain itu, saya aktif mengerjakan proyek UI/UX Design di Figma dan sedang mendalami integrasi AI (seperti Chatbot dengan Qwen-Plus) serta pengembangan aplikasi mobile berbasis Swift dan Dart.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Are you available for freelance or internship?
+            <span class="faq-ico"><i class="fas fa-plus"></i></span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-inner">Ya! Saat ini saya sedang menjalani magang di PT Putra Wijayakusuma Sakti (PWS) hingga April 2026, namun saya selalu terbuka untuk kolaborasi freelance atau diskusi proyek menarik di bidang Web Dev, iOS Development, atau UI/UX Design. Mari terhubung melalui <a href="https://www.linkedin.com/in/narendrasatyaa" target="_blank" style="color:var(--text);font-weight:600;text-decoration:underline;">LinkedIn</a>.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            What is your primary tech stack?
+            <span class="faq-ico"><i class="fas fa-plus"></i></span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-inner">Stack utama saya adalah Laravel 11 + Vite.js dan MySQL untuk web skala besar. Saya juga mahir menggunakan PHP Native, Python, dan Tailwind CSS. Untuk desain antarmuka, saya menggunakan Figma. Saat ini, saya sedang memperdalam Swift untuk ekosistem iOS dan Dart untuk cross-platform development.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Do you have experience in leadership or public speaking?
+            <span class="faq-ico"><i class="fas fa-plus"></i></span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-inner">Tentu. Saya menjabat sebagai Head of Science and Research di HIMATIF UMS (2025) dan memiliki pengalaman sebagai pembicara di berbagai acara kampus serta podcast. Saya percaya komunikasi yang baik adalah kunci kesuksesan dalam kolaborasi tim teknis.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Are your projects open source?
+            <span class="faq-ico"><i class="fas fa-plus"></i></span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-inner">Beberapa proyek akademik dan personal tersedia di <a href="https://github.com/narendrasatyaa" target="_blank" style="color:var(--text);font-weight:600;text-decoration:underline;">GitHub</a> saya. Namun, proyek yang berkaitan dengan magang di PT PWS atau sistem internal organisasi bersifat private untuk menjaga keamanan data perusahaan.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            How do I contact you?
+            <span class="faq-ico"><i class="fas fa-plus"></i></span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-inner">Cara tercepat adalah melalui LinkedIn atau email di <strong style="color:var(--text);"><a href="mailto:narendra.adikurniawan@gmail.com">narendra.adikurniawan@gmail.com</a></strong>. Anda juga bisa melihat rangkuman link saya di <a href="https://kasbu.bio/narenlabs" target="_blank" style="color:var(--text);font-weight:600;text-decoration:underline;">kasbu.bio/narenlabs</a>. Saya biasanya merespons dalam waktu 24 jam.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ─── CONTACT ───────────────────────────────────── -->
+  <section id="contact">
+    <div class="page">
+      <div class="crumb">
+        <a href="#home"><i class="fas fa-house" style="font-size:9px"></i></a>
+        <span class="sep">/</span>
+        <span class="now">Contact</span>
+      </div>
+      <div class="cband" style="padding:64px 48px;text-align:center;">
+        <div class="label" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15);color:rgba(255,255,255,0.6);margin-bottom:16px;">Get In Touch</div>
+        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:12px;">Let's Work Together</h2>
+        <p style="font-size:0.9rem;opacity:0.6;max-width:500px;margin:0 auto 36px;line-height:1.7;">
+          I'm always open to discussing new opportunities, collaborations, or just a chat about tech and ideas.
         </p>
-        <div class="flex justify-center gap-6 text-2xl">
-          <a href="https://github.com/narendrasatyaa" target="_blank" aria-label="GitHub"
-            class="text-white opacity-80 hover:opacity-100 transition-opacity">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="mailto:narendra.adikurniawan@gmail.com" target="_blank" aria-label="Gmail"
-            class="text-white opacity-80 hover:opacity-100 transition-opacity">
-            <i class="fas fa-envelope"></i>
-          </a>
-          <a href="https://linkedin.com/in/narendra-satya-adikurniawan" target="_blank" aria-label="LinkedIn"
-            class="text-white opacity-80 hover:opacity-100 transition-opacity">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a href="https://instagram.com/narenlabs" target="_blank" aria-label="Instagram"
-            class="text-white opacity-80 hover:opacity-100 transition-opacity">
-            <i class="fab fa-instagram"></i>
-          </a>
+        <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px;">
+          <a href="https://github.com/narendrasatyaa" target="_blank" class="cband-link"><i class="fab fa-github"></i> GitHub</a>
+          <a href="mailto:narendra.adikurniawan@gmail.com" class="cband-link"><i class="fas fa-envelope"></i> Email</a>
+          <a href="https://linkedin.com/in/narendrasatyaa" target="_blank" class="cband-link"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+          <a href="https://instagram.com/narenlabs" target="_blank" class="cband-link"><i class="fab fa-instagram"></i> Instagram</a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer class="py-8 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-      <div class="container mx-auto px-6 text-center">
-        <p class="text-sm opacity-70">©<span id="year">2025</span> narenlabs.</p>
-      </div>
-    </footer>
-  </div>
-
+  <!-- ─── FOOTER ────────────────────────────────────── -->
+  <footer style="padding:28px 0;border-top:1px solid var(--border);">
+    <div class="page" style="text-align:center;">
+      <p style="font-size:0.75rem;color:var(--text3);">© <span id="year"></span> narenlabs. Made with care.</p>
+    </div>
+  </footer>
   <script src="script.js"></script>
 </body>
-
 </html>
